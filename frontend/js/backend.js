@@ -12,24 +12,32 @@
 
   window.parseTickPrice = function (tick) {
     if (!tick) return undefined;
-    const raw = tick.last_traded_price ?? tick.lastTradedPrice ?? tick.ltp ?? tick.price;
-    if (raw === undefined) return undefined;
-    const num = Number(raw);
-    if (num > 100000 && tick.last_traded_price !== undefined) {
-      return num / 100;
+    // Prefer ltp/price — these are always already in rupees (normalized by server)
+    if (tick.ltp !== undefined && Number(tick.ltp) > 0) return Number(tick.ltp);
+    if (tick.price !== undefined && Number(tick.price) > 0) return Number(tick.price);
+    // Fall back to last_traded_price which is stored as paise (×100) on the server
+    if (tick.last_traded_price !== undefined) {
+      const num = Number(tick.last_traded_price);
+      return num > 1000 ? num / 100 : num;
     }
-    return num > 10000 && num % 1 === 0 && tick.last_traded_price !== undefined ? num / 100 : num;
+    if (tick.lastTradedPrice !== undefined) {
+      const num = Number(tick.lastTradedPrice);
+      return num > 1000 ? num / 100 : num;
+    }
+    return undefined;
   };
 
   window.parseTickClose = function (tick) {
     if (!tick) return undefined;
-    const raw = tick.close_price ?? tick.closePrice ?? tick.close;
-    if (raw === undefined) return undefined;
-    const num = Number(raw);
-    if (num > 100000 && tick.close_price !== undefined) {
-      return num / 100;
+    // Prefer closePrice — always in rupees (normalized by server)
+    if (tick.closePrice !== undefined && Number(tick.closePrice) > 0) return Number(tick.closePrice);
+    // Fall back to close_price which is stored as paise (×100) on the server
+    if (tick.close_price !== undefined) {
+      const num = Number(tick.close_price);
+      return num > 1000 ? num / 100 : num;
     }
-    return num > 10000 && num % 1 === 0 && tick.close_price !== undefined ? num / 100 : num;
+    if (tick.close !== undefined) return Number(tick.close);
+    return undefined;
   };
 
   function processMarketData(data) {

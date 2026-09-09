@@ -926,24 +926,18 @@ app.get("/api/market-status", (req, res) => {
 // START SERVER
 // ======================================================
 
+// Initialize data services at module load time (runs on both local & Vercel serverless)
+(async () => {
+    await refreshSheetData();
+    setInterval(refreshSheetData, 20 * 1000); // Check Google Sheet every 20 seconds
+    startLiveFluctuationEngine();
+    startAngel();
+})();
+
 if (!process.env.VERCEL) {
-    server.listen(
-        PORT,
-        async () => {
-
-            console.log(
-                `Backend running on http://localhost:${PORT}`
-            );
-
-            await refreshSheetData();
-            setInterval(refreshSheetData, 20 * 1000); // Check Google Sheet every 20 seconds
-
-            startLiveFluctuationEngine();
-
-            startAngel();
-
-        }
-    );
+    server.listen(PORT, () => {
+        console.log(`Backend running on http://localhost:${PORT}`);
+    });
 }
 
 app.get(
