@@ -61,7 +61,9 @@ MARKET_STOCKS.forEach(stock => {
         open_price: Math.round(stock.closePrice * 100),
         high_price: Math.round(stock.basePrice * 1.01 * 100),
         low_price: Math.round(stock.basePrice * 0.99 * 100),
-        volume: Math.floor(Math.random() * 500000 + 100000)
+        volume: Math.floor(Math.random() * 500000 + 100000),
+        // Stamp so fluctuation engine doesn't immediately overwrite seed prices
+        _lastRealTick: Date.now()
     };
 });
 
@@ -753,6 +755,8 @@ async function fetchInitialQuotes() {
                                     liveState[tok].price = ltp;
                                     liveState[tok].ltp = ltp;
                                     liveState[tok].last_traded_price = Math.round(ltp * 100);
+                                    // Stamp real tick time so fluctuation engine won't overwrite fresh data
+                                    liveState[tok]._lastRealTick = Date.now();
                                 }
                                 if (close > 0) {
                                     liveState[tok].closePrice = close;
