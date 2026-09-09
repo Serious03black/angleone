@@ -496,8 +496,8 @@ async function startAngelWebSocket() {
 
                 let ltp = undefined;
                 if (rawTick.last_traded_price !== undefined) {
-                    const num = Number(rawTick.last_traded_price);
-                    ltp = num > 100000 ? num / 100 : (num > 10000 && num % 1 === 0 ? num / 100 : num);
+                    // SmartAPI WebSocket always sends last_traded_price in paise — always divide by 100
+                    ltp = Number(rawTick.last_traded_price) / 100;
                 } else if (rawTick.ltp !== undefined) {
                     ltp = Number(rawTick.ltp);
                 } else if (rawTick.price !== undefined) {
@@ -506,8 +506,8 @@ async function startAngelWebSocket() {
 
                 let closePrice = undefined;
                 if (rawTick.close_price !== undefined) {
-                    const num = Number(rawTick.close_price);
-                    closePrice = num > 100000 ? num / 100 : (num > 10000 && num % 1 === 0 ? num / 100 : num);
+                    // SmartAPI WebSocket always sends close_price in paise — always divide by 100
+                    closePrice = Number(rawTick.close_price) / 100;
                 } else if (rawTick.closePrice !== undefined) {
                     closePrice = Number(rawTick.closePrice);
                 }

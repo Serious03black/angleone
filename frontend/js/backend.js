@@ -15,14 +15,12 @@
     // Prefer ltp/price — these are always already in rupees (normalized by server)
     if (tick.ltp !== undefined && Number(tick.ltp) > 0) return Number(tick.ltp);
     if (tick.price !== undefined && Number(tick.price) > 0) return Number(tick.price);
-    // Fall back to last_traded_price which is stored as paise (×100) on the server
+    // Fall back to last_traded_price which is in paise (SmartAPI always sends ×100)
     if (tick.last_traded_price !== undefined) {
-      const num = Number(tick.last_traded_price);
-      return num > 1000 ? num / 100 : num;
+      return Number(tick.last_traded_price) / 100;
     }
     if (tick.lastTradedPrice !== undefined) {
-      const num = Number(tick.lastTradedPrice);
-      return num > 1000 ? num / 100 : num;
+      return Number(tick.lastTradedPrice) / 100;
     }
     return undefined;
   };
@@ -31,10 +29,9 @@
     if (!tick) return undefined;
     // Prefer closePrice — always in rupees (normalized by server)
     if (tick.closePrice !== undefined && Number(tick.closePrice) > 0) return Number(tick.closePrice);
-    // Fall back to close_price which is stored as paise (×100) on the server
+    // Fall back to close_price which is in paise (SmartAPI always sends ×100)
     if (tick.close_price !== undefined) {
-      const num = Number(tick.close_price);
-      return num > 1000 ? num / 100 : num;
+      return Number(tick.close_price) / 100;
     }
     if (tick.close !== undefined) return Number(tick.close);
     return undefined;
