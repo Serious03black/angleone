@@ -47,15 +47,18 @@ const MARKET_STOCKS = [
 ];
 
 const liveState = {};
+// Outside market hours seed with closePrice so users see the final closing value
+const _seedMarketOpen = isMarketOpen();
 MARKET_STOCKS.forEach(stock => {
+    const seedPrice = _seedMarketOpen ? stock.basePrice : stock.closePrice;
     liveState[stock.token] = {
         token: stock.token,
         symbol: stock.symbol,
         name: stock.name,
         exchange: stock.exchange,
-        last_traded_price: Math.round(stock.basePrice * 100),
-        ltp: stock.basePrice,
-        price: stock.basePrice,
+        last_traded_price: Math.round(seedPrice * 100),
+        ltp: seedPrice,
+        price: seedPrice,
         close_price: Math.round(stock.closePrice * 100),
         closePrice: stock.closePrice,
         open_price: Math.round(stock.closePrice * 100),
@@ -98,7 +101,9 @@ async function refreshSheetData() {
                     open_price: Math.round(estPrice * 100),
                     high_price: Math.round(estPrice * 1.01 * 100),
                     low_price: Math.round(estPrice * 0.99 * 100),
-                    volume: Math.floor(Math.random() * 500000 + 100000)
+                    volume: Math.floor(Math.random() * 500000 + 100000),
+                    // Stamp so fluctuation engine doesn't immediately overwrite sheet-sourced prices
+                    _lastRealTick: Date.now()
                 };
             } else {
                 if (stock.name) liveState[tok].name = stock.name;
@@ -631,11 +636,36 @@ function startLiveFluctuationEngine() {
     fluctuationTimer = setInterval(() => {
         const marketOpen = isMarketOpen();
 
-        // If market is closed (after 3:30 PM, before 9:15 AM, or weekend), FREEZE ALL PRICES
+        // If market is closed (after 3:30 PM, before 9:15 AM, or weekend), FREEZE ALL PRICES at closePrice
         if (!marketOpen) {
             if (lastMarketStatusLogged !== false) {
                 lastMarketStatusLogged = false;
-                console.log("[MarketEngine] Market is CLOSED (Trading Hours: 9:15 AM - 3:30 PM IST). Price fluctuation stopped.");
+                console.log("[MarketEngine] Market is CLOSED. Resetting all prices to closing values.");
+
+                // Reset every stock price to its closePrice and push one final snapshot to all clients
+                const closingSnapshot = [];
+                Object.values(liveState).forEach(stock => {
+                    const cp = stock.closePrice || stock.price || stock.ltp;
+                    if (cp > 0) {
+                        stock.price = cp;
+                        stock.ltp = cp;
+                        stock.last_traded_price = Math.round(cp * 100);
+                    }
+                    closingSnapshot.push({
+                        token: stock.token,
+                        symbol: stock.symbol,
+                        name: stock.name,
+                        exchange: stock.exchange,
+                        last_traded_price: stock.last_traded_price,
+                        ltp: stock.ltp,
+                        price: stock.price,
+                        close_price: stock.close_price,
+                        closePrice: stock.closePrice,
+                        volume: stock.volume
+                    });
+                });
+
+                io.emit("marketData", closingSnapshot);
                 io.emit("status", {
                     connected,
                     marketOpen: false,
@@ -841,7 +871,20 @@ io.on(
             }
         );
 
-        socket.emit("stocks", MARKET_STOCKS);
+        // Send liveState-derived list so prices match marketData (closePrice outside hours, live price inside)
+        const stocksSnapshot = Object.values(liveState).map(s => ({
+            token: s.token,
+            symbol: s.symbol,
+            rawSymbol: s.rawSymbol,
+            name: s.name,
+            exchange: s.exchange,
+            ltp: s.ltp,
+            price: s.price,
+            last_traded_price: s.last_traded_price,
+            close_price: s.close_price,
+            closePrice: s.closePrice
+        }));
+        socket.emit("stocks", stocksSnapshot);
         socket.emit("marketData", Object.values(liveState));
 
         socket.on("subscribeToken", (token) => {
