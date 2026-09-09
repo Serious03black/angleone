@@ -926,23 +926,25 @@ app.get("/api/market-status", (req, res) => {
 // START SERVER
 // ======================================================
 
-server.listen(
-    PORT,
-    async () => {
+if (!process.env.VERCEL) {
+    server.listen(
+        PORT,
+        async () => {
 
-        console.log(
-            `Backend running on http://localhost:${PORT}`
-        );
+            console.log(
+                `Backend running on http://localhost:${PORT}`
+            );
 
-        await refreshSheetData();
-        setInterval(refreshSheetData, 20 * 1000); // Check Google Sheet every 20 seconds
+            await refreshSheetData();
+            setInterval(refreshSheetData, 20 * 1000); // Check Google Sheet every 20 seconds
 
-        startLiveFluctuationEngine();
+            startLiveFluctuationEngine();
 
-        startAngel();
+            startAngel();
 
-    }
-);
+        }
+    );
+}
 
 app.get(
     "/api/stocks",
@@ -972,3 +974,5 @@ app.get(
         res.json({ success: true, message: "Google Sheet synced successfully", lastUpdated: getSheetData().lastUpdated });
     }
 );
+
+module.exports = app;
