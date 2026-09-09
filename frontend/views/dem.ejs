@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angel One Live Market - Debug Terminal</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { margin: 0; padding: 30px; background: #111; color: white; font-family: Arial, sans-serif; }
+        .card { max-width: 500px; margin: auto; padding: 25px; background: #1d1d1d; border-radius: 15px; }
+        .status { margin-bottom: 20px; color: #aaa; }
+        .row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #333; }
+        .value { font-weight: bold; }
+        #ltp { font-size: 30px; }
+        .positive { color: #00d084; }
+        .negative { color: #ff4d4d; }
+        .neutral { color: #aaa; }
+        .stocks-card { max-width: 900px; margin: 25px auto 0; padding: 25px; background: #1d1d1d; border-radius: 15px; overflow-x: auto; }
+        .stocks-table { width: 100%; border-collapse: collapse; min-width: 650px; }
+        .stocks-table th, .stocks-table td { padding: 12px; text-align: left; border-bottom: 1px solid #333; }
+        .stocks-table th { color: #aaa; font-size: 13px; }
+        .stocks-table td { font-size: 14px; }
+        .token-inputs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-bottom: 15px; }
+        .token-inputs input { min-width: 0; padding: 10px; border: 1px solid #444; border-radius: 6px; background: #111; color: white; }
+        button { background: #2f65f6; color: white; border: none; padding: 10px 18px; border-radius: 6px; cursor: pointer; font-weight: bold; }
+        button:hover { background: #1e4ed8; }
+        .back-link { display: inline-block; margin-bottom: 15px; color: #60a5fa; text-decoration: none; font-size: 14px; }
+    </style>
+</head>
+<body>
+<div style="max-width: 900px; margin: auto;">
+    <a href="/" class="back-link">← Back to Dashboard</a>
+</div>
+
+<div class="card">
+    <h2 id="symbol">NIFTY 50</h2>
+    <div id="status" class="status">Connecting...</div>
+
+    <div class="row">
+        <span>LTP</span>
+        <strong id="ltp">--</strong>
+    </div>
+    <div class="row">
+        <span>Change</span>
+        <strong id="change">--</strong>
+    </div>
+    <div class="row">
+        <span>Change %</span>
+        <strong id="changePercent">--</strong>
+    </div>
+    <div class="row">
+        <span>Previous Close</span>
+        <strong id="close">--</strong>
+    </div>
+</div>
+
+<div class="stocks-card">
+    <h2>Live Stocks</h2>
+    <div class="token-inputs">
+        <input class="token-input" type="text" placeholder="Token 1">
+        <input class="token-input" type="text" placeholder="Token 2">
+        <input class="token-input" type="text" placeholder="Token 3">
+        <input class="token-input" type="text" placeholder="Token 4">
+        <input class="token-input" type="text" placeholder="Token 5">
+        <input class="token-input" type="text" placeholder="Token 6">
+        <input class="token-input" type="text" placeholder="Token 7">
+        <input class="token-input" type="text" placeholder="Token 8">
+        <input class="token-input" type="text" placeholder="Token 9">
+        <input class="token-input" type="text" placeholder="Token 10">
+    </div>
+
+    <button id="add-token-button" type="button">Subscribe All Tokens</button>
+
+    <table class="stocks-table">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Token</th>
+                <th>Live Price</th>
+                <th>Change</th>
+                <th>Change %</th>
+            </tr>
+        </thead>
+        <tbody id="stocks-table-body"></tbody>
+    </table>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/backend.js"></script>
+<script>
+const socket = window.backendSocket;
+const stocksTableBody = document.getElementById("stocks-table-body");
+const tokenInputs = document.querySelectorAll(".token-input");
+const addTokenButton = document.getElementById("add-token-button");
+const stockRows = {};
+
+const statusElement = document.getElementById("status");
+const ltpElement = document.getElementById("ltp");
+const changeElement = document.getElementById("change");
+const changePercentElement = document.getElementById("changePercent");
+const closeElement = document.getElementById("close");
+
+function getToken(data) {
+    return String(data.token ?? data.subscriptionToken ?? data.instrumentToken ?? "").trim().replace(/^['"]|['"]$/g, "");
+}
+
+function getLivePrice(data) {
+    const rawPrice = data.last_traded_price ?? data.lastTradedPrice ?? data.ltp;
+    return rawPrice === undefined ? undefined : Number(rawPrice) / 100;
+}
+
+function getClosePrice(data) {
+    const rawClose = data.close_price ?? data.closePrice;
+    return rawClose === undefined ? undefined : Number(rawClose) / 100;
+}
+
+function renderStocks(stocks) {
+    if (!stocksTableBody) return;
+    stocksTableBody.innerHTML = "";
+    stocks.forEach((stock) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${stock.symbol}</td>
+            <td>${stock.name}</td>
+            <td>${stock.token}</td>
+            <td id="stock-price-${stock.token}">--</td>
+            <td id="stock-change-${stock.token}">--</td>
+            <td id="stock-percent-${stock.token}">--</td>
+        `;
+        stocksTableBody.appendChild(row);
+        stockRows[String(stock.token)] = stock;
+    });
+}
+
+function addTokenRow(token) {
+    if (!/^\d+$/.test(token)) {
+        alert("Enter a valid numeric Angel One token.");
+        return;
+    }
+    if (document.getElementById(`stock-price-${token}`)) return;
+    const row = document.createElement("tr");
+    row.innerHTML = `
+        <td>Custom</td>
+        <td>Token ${token}</td>
+        <td>${token}</td>
+        <td id="stock-price-${token}">Waiting...</td>
+        <td id="stock-change-${token}">--</td>
+        <td id="stock-percent-${token}">--</td>
+    `;
+    stocksTableBody.appendChild(row);
+    if (socket) socket.emit("subscribeToken", token);
+}
+
+function updateStocks(data) {
+    const ticks = Array.isArray(data) ? data : Array.isArray(data?.data) ? data.data : [data?.data ?? data];
+    ticks.forEach((tick) => {
+        const token = getToken(tick);
+        const price = Number(getLivePrice(tick));
+        const close = getClosePrice(tick);
+        if (!token || !Number.isFinite(price)) return;
+        const priceElement = document.getElementById(`stock-price-${token}`);
+        const changeElement = document.getElementById(`stock-change-${token}`);
+        const percentElement = document.getElementById(`stock-percent-${token}`);
+
+        if (priceElement) priceElement.textContent = `₹${formatPrice(price)}`;
+        if (Number.isFinite(close) && close !== 0) {
+            const change = price - close;
+            const percent = (change / close) * 100;
+            const sign = change >= 0 ? "+" : "";
+            if (changeElement) changeElement.textContent = `${sign}${formatPrice(change)}`;
+            if (percentElement) percentElement.textContent = `${sign}${percent.toFixed(2)}%`;
+        }
+    });
+}
+
+document.addEventListener("backend-stocks", (event) => renderStocks(event.detail));
+document.addEventListener("backend-market-data", (event) => updateStocks(event.detail));
+
+if (addTokenButton) {
+    addTokenButton.addEventListener("click", () => {
+        const tokens = Array.from(tokenInputs).map(input => input.value.trim()).filter(Boolean);
+        tokens.forEach(addTokenRow);
+        tokenInputs.forEach(input => input.value = "");
+    });
+}
+
+tokenInputs.forEach((input) => {
+    input.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" && addTokenButton) {
+            addTokenButton.click();
+        }
+    });
+});
+
+if (socket) {
+    socket.on("tokenSubscription", (result) => {
+        if (statusElement) {
+            statusElement.innerText = result.message;
+            statusElement.style.color = result.subscribed ? "#00d084" : "#ff4d4d";
+        }
+    });
+
+    socket.on("status", (data) => {
+        if (statusElement) {
+            statusElement.innerText = data.message;
+            statusElement.style.color = data.connected ? "#00d084" : "#ff4d4d";
+        }
+    });
+
+    socket.on("marketData", (data) => {
+        const ticks = Array.isArray(data) ? data : [data];
+        const nifty = ticks.find(tick => getToken(tick) === "99926000");
+        if (nifty) updateMarket(nifty);
+    });
+
+    socket.on("stocks", (stocks) => renderStocks(stocks));
+}
+
+function updateMarket(data) {
+    const livePrice = getLivePrice(data);
+    const closePrice = getClosePrice(data);
+    if (Number.isFinite(livePrice) && ltpElement) {
+        ltpElement.innerText = formatPrice(livePrice);
+    }
+    if (Number.isFinite(closePrice)) {
+        if (closeElement) closeElement.innerText = formatPrice(closePrice);
+        if (Number.isFinite(livePrice)) {
+            const change = livePrice - closePrice;
+            const percent = closePrice !== 0 ? (change / closePrice) * 100 : 0;
+            if (changeElement) {
+                changeElement.innerText = formatPrice(change);
+                changeElement.className = change > 0 ? "positive" : change < 0 ? "negative" : "neutral";
+            }
+            if (changePercentElement) {
+                changePercentElement.innerText = percent.toFixed(2) + "%";
+                changePercentElement.className = change > 0 ? "positive" : change < 0 ? "negative" : "neutral";
+            }
+        }
+    }
+}
+
+function formatPrice(value) {
+    return Number(value).toLocaleString("en-IN", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,570 @@
+/* Home / Dashboard View Styles */
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.box{
+background-color: var(--white);
+width: 100%;
+
+}
+.b1{
+  padding-inline: 20px;
+  background-color: var(--white);
+  padding-top: 8px;
+}
+
+/* Banner 1: Commodities Live Banner */
+.live-banner {
+  background: #F0F4FF;
+  border: 1px solid #D6E4FF;
+  border-radius: var(--radius-md);
+  padding: 8px 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.live-banner-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.live-tag {
+  background: #EF5350;
+  color: var(--white);
+  font-size: 10px;
+  font-weight:500;
+  padding: 3px 8px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  letter-spacing: 0.5px;
+}
+
+.live-text {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--dark-navy);
+}
+
+/* Banner 2: Get Ready to Invest Banner */
+.invest-banner {
+  background: linear-gradient(90deg, #EDF2FE 0%, #F5F8FF 100%);
+  border: 1px solid #DBEAFE;
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+margin-bottom: 30px;
+}
+
+.invest-banner-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.coin-illustration {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #DBEAFE;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-blue);
+  font-size: 24px;
+  font-weight: 700;
+  box-shadow: 0 4px 10px rgba(63, 95, 234, 0.15);
+}
+
+.invest-banner-info h3 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--dark-navy);
+  margin-bottom: 4px;
+}
+
+.invest-banner-info p {
+  font-size: 12px;
+  color: var(--secondary-gray);
+}
+
+/* Discovery Section - 5 Cards Grid */
+.discovery-section{
+  margin-bottom: 30px;
+}
+.discovery-section-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--dark-navy);
+  margin-bottom: 22px;
+}
+
+.discovery-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+}
+
+.discovery-card {
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 20px 22px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--dark-navy);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.discovery-card:hover {
+  
+  box-shadow: var(--shadow-md);
+  border-color: #d2d3d4;
+  background-color: #e9e9e9;
+}
+
+.discovery-card:hover .discovery-icon-wrapper
+ {
+  background-color: #ffffff;
+}
+
+.discovery-icon-wrapper {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background: #f2f3f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-blue);
+  flex-shrink: 0;
+}
+
+.discovery-card-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--dark-navy);
+}
+
+.b2{
+  padding-inline: 30px;
+  background-color: var(--white);
+  padding-top: 30px;
+}
+/* IPO Section - 3 Cards Grid */
+.ipo-section {
+  margin-bottom: 30px;
+  
+}
+.ipo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 30px;
+}
+
+.ipo-card {
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.15s ease;
+}
+.ipo-up{
+  padding: 16px 20px;
+}
+.ipo-card:hover {
+  border-color: #BFDBFE;
+}
+
+.ipo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.ipo-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ipo-logo-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  text-align: center;
+   border: 0.5px solid #929191;
+}
+
+.ipo-name {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--dark-navy);
+  margin-bottom: 2px;
+}
+
+.ipo-type-badge {
+  font-size: 10px;
+  font-weight: 500;
+  background: #F3E8FF;
+  color: #701abb;
+  padding: 2px 6px;
+  border-radius: 3px;
+ 
+  margin-top: 2px;
+  display: inline-block;
+}
+
+.ipo-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding-top: 12px;
+  
+  margin-bottom: 12px;
+}
+
+.ipo-detail-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.ipo-detail-item.right {
+  text-align: right;
+}
+
+.ipo-label {
+  font-size: 11px;
+  color: var(--secondary-gray);
+  margin-bottom: 2px;
+}
+
+.ipo-value {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--dark-navy);
+}
+
+.ipo-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 8px;
+  color:black;
+  border: 1px solid #dce3eb;
+  background-color: #dce3eb;
+  font-size: 11px;
+   padding: 8px 20px;
+}
+
+.ipo-sub-val {
+  font-weight: 700;
+  color: var(--dark-navy);
+}
+
+
+
+
+
+/* b3 section */
+
+
+.b3{
+   padding-inline: 30px;
+  background-color: var(--white);
+  padding-top: 30px;
+}
+
+
+
+.fo-trade-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 12px;
+}
+
+/* TOP SPLIT: HEATMAP & SECTOR STOCK LIST */
+.fo-top-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.heatmap-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.heatmap-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+ row-gap: 20px;
+ column-gap: 60px;
+ 
+}
+.section-heading{
+  font-weight: 500;
+}
+.sector-card {
+  height: 90px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.sector-card.green {
+  background-color: #0F9F86;
+  color: #FFFFFF;
+}
+
+.sector-card.green:hover {
+  background-color: #0D8B75;
+}
+
+.sector-card.red {
+  background-color: #F8A5A5;
+  color: #1E293B;
+}
+
+.sector-card.red:hover {
+  background-color: #F38B8B;
+}
+
+.sector-card.active {
+  outline: 3px solid #2563EB;
+  outline-offset: 1px;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2);
+}
+
+.sector-name {
+  font-size: 11.5px;
+  font-weight: 700;
+}
+
+.sector-change {
+  font-size: 11px;
+  font-weight: 800;
+}
+
+/* SECTOR LIST CONTAINER (RIGHT) */
+.sector-list-container {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 16px 20px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sector-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sector-list-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-heading);
+}
+
+/* FO TABLES */
+.fo-table-wrapper {
+  overflow-x: auto;
+}
+
+.fo-table {
+  width: 100%;
+  border-collapse: collapse;
+  border:1px solid rgb(225, 225, 225);
+  font-size: 12px;
+  border-radius: 50px;
+}
+
+.fo-table th {
+  padding: 8px 10px;
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 11px;
+  background-color: #f7fbfd;
+  border-bottom:1px solid rgb(225, 225, 225);
+}
+
+.fo-table td {
+  padding: 12px 10px;
+  border-bottom: 1px solid rgb(225, 225, 225);
+  vertical-align: middle;
+ 
+  text-align: right;
+}
+.fo-table .fno{
+  text-align: left;
+}
+
+.fo-table tr:last-child td {
+  border-bottom: none;
+}
+
+.scrip-name {
+  font-weight: 500;
+  color: var(--text-heading);
+  font-size: 11px;
+  margin-right: 6px;
+}
+
+.scrip-date {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.price {
+  font-weight: 500;
+  font-size: 11px;
+}
+
+.price.gain { color: var(--gain-green); }
+.price.loss { color: var(--loss-red); }
+
+.change {
+  font-weight: 600;
+  font-size: 11.5px;
+}
+
+.change.gain { color: var(--gain-green); }
+.change.loss { color: var(--loss-red); }
+
+/* BOTTOM SPLIT: INDEX F&O & COMMODITIES */
+.fo-bottom-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.fo-column-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 18px 20px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.column-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.column-title {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-heading);
+}
+
+.filter-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pill-select {
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--text-heading);
+  outline: none;
+  cursor: pointer;
+  font-family: var(--font-family);
+  transition: border-color 0.15s ease;
+  border: 1px solid rgb(233, 234, 235);
+}
+
+.pill-select:hover {
+  border-color: var(--primary-blue);
+}
+
+.option-name-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.option-name-row strong {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--text-heading);
+}
+
+.tag-badge {
+  font-size: 9.5px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.3px;
+}
+
+.itm-badge {
+  background-color: #ECFDF5;
+  color: #059669;
+}
+
+.atm-badge {
+  background-color: #F3E8FF;
+  color: #7E22CE;
+}
+
+.otm-badge {
+  background-color: #FEF3C7;
+  color: #D97706;
+}
+
+@media (max-width: 1024px) {
+  .fo-top-row, .fo-bottom-row {
+    grid-template-columns: 1fr;
+  }
+}
+

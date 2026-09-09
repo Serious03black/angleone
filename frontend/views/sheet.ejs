@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%- include('partials/head', { title: 'Angel One - Sheet Data' }) %>
+    <style>
+        .sheet-container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 24px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #e2e8f0;
+            text-align: left;
+        }
+        th {
+            background: #10233f;
+            color: white;
+            font-size: 13px;
+            text-transform: uppercase;
+        }
+        td {
+            font-size: 14px;
+            color: #334155;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <%- include('partials/header', { activePage: '' }) %>
+        <div class="sheet-container">
+            <h2 style="font-size: 18px; color: #10233f;">Student Stock Data</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Stock Name</th>
+                        <th>Code</th>
+                        <th>Buy Price</th>
+                        <th>Quantity</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="studentData">
+                    <tr><td colspan="5" style="text-align: center; color: #94a3b8;">Loading spreadsheet data...</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <%- include('partials/ask-angel-btn') %>
+    </div>
+
+    <%- include('partials/scripts') %>
+    <script>
+        const sheetURL = "https://docs.google.com/spreadsheets/d/1KheQCIcEHbQ29JnCG46ODlKuiDH6zzd3RCCEchhTOSQ/gviz/tq?tqx=out:csv&gid=0";
+        fetch(sheetURL)
+            .then(response => response.text())
+            .then(data => {
+                const rows = data.split("\n");
+                const table = document.getElementById("studentData");
+                table.innerHTML = "";
+
+                rows.slice(1).forEach(row => {
+                    const columns = row.split(",");
+                    if (columns.length >= 5) {
+                        const tr = document.createElement("tr");
+                        tr.innerHTML = `
+                            <td><strong>${columns[0].replace(/"/g, '')}</strong></td>
+                            <td>${columns[1].replace(/"/g, '')}</td>
+                            <td>₹${columns[2].replace(/"/g, '')}</td>
+                            <td>${columns[3].replace(/"/g, '')}</td>
+                            <td><span class="badge ${columns[4].toLowerCase().includes('buy') ? 'badge-primary' : 'badge-expiry'}">${columns[4].replace(/"/g, '')}</span></td>
+                        `;
+                        table.appendChild(tr);
+                    }
+                });
+            })
+            .catch(error => {
+                console.error("Error loading sheet:", error);
+                document.getElementById("studentData").innerHTML = '<tr><td colspan="5" style="text-align: center; color: #ef4444;">Failed to load data.</td></tr>';
+            });
+    </script>
+</body>
+</html>

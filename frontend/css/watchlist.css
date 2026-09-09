@@ -1,0 +1,233 @@
+/* Left Watchlist Sidebar */
+
+.watchlist-sidebar {
+  width: var(--watchlist-width);
+  background: var(--white);
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - var(--header-height));
+  position: sticky;
+  top: var(--header-height);
+  z-index: 100;
+  transition: transform 0.25s ease, margin-left 0.25s ease;
+  flex-shrink: 0;
+}
+
+.watchlist-sidebar.collapsed {
+  display: none;
+}
+
+/* Watchlist Top Header */
+.watchlist-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px 8px 16px;
+}
+
+.watchlist-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--dark-navy);
+}
+
+.watchlist-settings-btn {
+  background: none;
+  border: none;
+  color: var(--secondary-gray);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+/* Tab & Actions Row */
+.watchlist-tabs-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 16px 8px 16px;
+  border-bottom: 1px solid #F1F5F9;
+}
+
+.watchlist-tab-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--primary-blue);
+  cursor: pointer;
+}
+
+.watchlist-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.action-icon-btn {
+  background: none;
+  border: none;
+  color: var(--secondary-gray);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  border-radius: 4px;
+}
+
+.action-icon-btn:hover {
+  color: var(--primary-blue);
+  background: var(--bg-light);
+}
+
+/* Search Row inside Watchlist */
+.watchlist-search-row {
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid #F1F5F9;
+}
+
+.watchlist-search-box {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.watchlist-search-input {
+  width: 100%;
+  height: 32px;
+  background: #F8FAFC;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 0 10px 0 30px;
+  font-size: 12px;
+  color: var(--dark-navy);
+  outline: none;
+}
+
+.watchlist-search-input:focus {
+  background: var(--white);
+  border-color: var(--primary-blue);
+}
+
+.watchlist-search-icon {
+  position: absolute;
+  left: 8px;
+  color: #94A3B8;
+  display: flex;
+}
+
+.filter-btn {
+  background: none;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  height: 32px;
+  width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--secondary-gray);
+  cursor: pointer;
+}
+
+.filter-btn:hover {
+  background: var(--bg-light);
+  color: var(--primary-blue);
+}
+
+/* Scrollable Stock List */
+.watchlist-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.stock-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  border-bottom: 1px solid #F1F5F9;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.stock-item:hover {
+  background-color: #F8FAFC;
+}
+
+.stock-item.selected {
+  background-color: #EFF6FF;
+  border-left: 3px solid var(--primary-blue);
+}
+
+.stock-info-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.stock-symbol {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--dark-navy);
+}
+
+.stock-exchange {
+  font-size: 10px;
+  color: #94A3B8;
+  font-weight: 500;
+}
+
+.stock-info-right {
+  text-align: right;
+}
+
+.stock-price-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.stock-change-row {
+  font-size: 11px;
+  font-weight: 500;
+  margin-top: 1px;
+}
+
+/* Watchlist Footer */
+.watchlist-footer {
+  padding: 10px 16px;
+  border-top: 1px solid var(--border-color);
+  background: var(--white);
+}
+
+.options-quick-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: none;
+  border: none;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--primary-blue);
+  cursor: pointer;
+  padding: 4px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.arrow-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--primary-blue-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

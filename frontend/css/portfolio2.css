@@ -1,0 +1,579 @@
+/* White Content Cards */
+.content-white-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+  margin-bottom: 18px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.content-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 14px;
+  letter-spacing: -0.2px;
+}
+
+/* Purple Allocation Bar */
+.purple-allocation-bar {
+  background-color: var(--purple-bar);
+  height: 40px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  padding: 0 6px;
+  margin-bottom: 14px;
+}
+
+.purple-bar-badge {
+  background-color:#25304099 ;
+  border:1px solid white;
+  color: #ffffff;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+/* Data Tables Base */
+.table-scroll-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.angel-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid rgba(211, 211, 211, 0.639);
+}
+.col-asset
+{
+    text-align: left;
+}
+.sortable
+{
+    text-align: left;
+}
+.table-header-row{
+    background-color: rgba(211, 213, 217, 0.306);
+}
+.angel-data-table th {
+  padding: 11px 14px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border-light);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.angel-data-table th.sortable {
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.angel-data-table th.sortable:hover {
+  color: var(--text-main);
+}
+
+.sort-icon-glyph {
+  font-size: 11px;
+  color: var(--text-light);
+  margin-left: 3px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.table-body {
+      border: 1px solid rgba(211, 211, 211, 0.639);
+
+}
+.angel-data-table td {
+  padding: 14px 14px;
+  font-size: 13px;
+  color: var(--text-main);
+  border-bottom: 1px solid #f6f8fa;
+  white-space: nowrap;
+}
+
+.table-data-row.clickable {
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.table-data-row.clickable:hover {
+  background-color: #f8fafd;
+}
+
+.blue-bullet-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--primary-blue);
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.table-sub-percent {
+  font-size: 11px;
+  font-weight: 500;
+  margin-left: 3px;
+}
+
+.chevron-arrow-icon {
+  color: var(--primary-blue);
+  vertical-align: middle;
+}
+
+
+/* =========================================================
+   EQUITY HOLDINGS TABLE SPECIFICS (EXACT MATCH TO IMAGE 2)
+   ========================================================= */
+
+.holdings-card-section {
+  padding: 16px 20px 20px;
+}
+
+.holdings-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.holdings-title-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.holdings-count-badge {
+  background-color: #eef2ff;
+  color: var(--primary-blue);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 1px 7px;
+  border-radius: var(--radius-xs);
+}
+
+.holdings-controls-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.holdings-search-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--border-input);
+  border-radius: var(--radius-sm);
+  padding: 6px 12px;
+  background-color: #ffffff;
+  width: 220px;
+}
+
+.holdings-search-box:focus-within {
+  border-color: var(--primary-blue);
+}
+
+.holdings-search-box input {
+  border: none;
+  background: transparent;
+  width: 100%;
+  font-size: 12px;
+  color: var(--text-main);
+}
+
+.holdings-search-box input::placeholder {
+  color: var(--text-muted);
+}
+
+.square-outline-btn {
+  border: 1px solid var(--border-input);
+  border-radius: var(--radius-sm);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  color: var(--text-muted);
+  transition: all 0.15s;
+}
+
+.square-outline-btn:hover {
+  border-color: var(--primary-blue);
+  color: var(--primary-blue);
+}
+
+.btn-select-exit {
+  border: 1px solid #d9e2ec;
+  border-radius: var(--radius-sm);
+  padding: 6px 12px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--primary-blue);
+  letter-spacing: 0.3px;
+  background-color: #ffffff;
+  transition: background-color 0.15s;
+}
+
+.btn-select-exit:hover {
+  background-color: var(--primary-blue-light);
+}
+
+/* Dropdown */
+.dropdown-wrapper {
+  position: relative;
+}
+
+.btn-group-by {
+  border: 1px solid #d9e2ec;
+  border-radius: var(--radius-sm);
+  padding: 6px 12px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background-color: #ffffff;
+  letter-spacing: 0.2px;
+}
+
+.btn-group-by:hover {
+  background-color: #f8fafc;
+}
+
+.dropdown-popup {
+  display: none;
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  background-color: #ffffff;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  min-width: 140px;
+  z-index: 50;
+  overflow: hidden;
+}
+
+.dropdown-popup.open {
+  display: block;
+}
+
+.dropdown-opt {
+  padding: 8px 14px;
+  font-size: 12px;
+  color: var(--text-main);
+  cursor: pointer;
+}
+
+.dropdown-opt:hover {
+  background-color: #f7f9fd;
+}
+
+.dropdown-opt.active {
+  color: var(--primary-blue);
+  font-weight: 600;
+  background-color: var(--primary-blue-light);
+}
+
+/* Exact Holdings Table Columns & Typography */
+.holdings-table {
+  table-layout: auto;
+}
+
+.holdings-table th {
+  padding: 11px 12px;
+  font-size: 11.5px;
+  color: #718096;
+  font-weight: 600;
+  border-bottom: 1px solid #edf2f7;
+}
+
+.holdings-table th.th-name { width: 22%; min-width: 130px; }
+.holdings-table th.th-qty { width: 10%; }
+.holdings-table th.th-avg { width: 11%; }
+.holdings-table th.th-ltp { width: 11%; }
+.holdings-table th.th-inv { width: 12%; }
+.holdings-table th.th-cur { width: 11%; }
+.holdings-table th.th-gl { width: 12%; }
+.holdings-table th.th-day { width: 11%; }
+
+.holding-stock-row td {
+  padding: 15px 12px;
+  font-size: 13px;
+  border-bottom: 1px solid #f0f3f8;
+}
+
+.holding-stock-row:hover {
+  background-color: #f8fafc;
+}
+
+.stock-name-cell {
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--text-main);
+  letter-spacing: 0.2px;
+}
+
+.gl-top-val {
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+.gl-bottom-val {
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-top: 2px;
+}
+
+/* Allocation Header */
+.allocation-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.view-toggle-pill-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pill-toggle-btn {
+  padding: 5px 14px;
+  border: 1px solid #d9e2ec;
+  border-radius: var(--radius-pill);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+  background-color: #ffffff;
+  transition: all 0.15s;
+}
+
+.pill-toggle-btn.active {
+  border-color: var(--primary-blue);
+  color: var(--primary-blue);
+  background-color: #f0f5ff;
+}
+
+/* Split Bottom Grid */
+.split-bottom-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.bottom-card {
+  min-height: 180px;
+}
+
+.bottom-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.bottom-card-title {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 2px;
+}
+
+.bottom-card-sub {
+  font-size: 11.5px;
+  color: var(--text-muted);
+}
+
+.returns-toggle-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--primary-blue);
+}
+
+.exchange-arrows-glyph {
+  font-size: 13px;
+}
+
+.sector-chart-legend {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+  font-size: 11.5px;
+  color: var(--text-muted);
+}
+
+.legend-unit {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-swatch {
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+}
+
+.dark-violet-bg { background-color: var(--purple-bar); }
+.light-lavender-bg { background-color: var(--purple-lavender); }
+
+.sector-bar-chart-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.dual-bars-track {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.sector-bar {
+  height: 7px;
+  border-radius: 4px;
+}
+
+.sector-tag-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.sector-name-txt {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.sector-pct-txt {
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+/* Drivers Tab Pills */
+.driver-tab-pills-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.driver-pill-btn {
+  padding: 5px 14px;
+  border: 1px solid #d9e2ec;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  background-color: #ffffff;
+}
+
+.driver-pill-btn.active {
+  border-color: var(--primary-blue);
+  color: var(--primary-blue);
+  background-color: #f0f5ff;
+}
+
+/* Graphic Illustration Area */
+.driver-graphic-box {
+  position: relative;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.graphic-document-card {
+  width: 62px;
+  height: 48px;
+  background: #ffffff;
+  border: 1.5px solid #dce4f2;
+  border-radius: 5px;
+  position: relative;
+  padding: 5px;
+}
+
+.doc-header-stripe {
+  width: 20px;
+  height: 3px;
+  background-color: #3b82f6;
+  border-radius: 2px;
+  margin-bottom: 5px;
+}
+
+.doc-line {
+  height: 3px;
+  background-color: #e2e8f0;
+  border-radius: 2px;
+  margin-bottom: 3px;
+}
+
+.doc-line.line-long { width: 70%; }
+.doc-line.line-short { width: 45%; }
+
+.doc-green-check {
+  position: absolute;
+  bottom: -6px;
+  right: -6px;
+  width: 16px;
+  height: 16px;
+  background-color: #10b981;
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: bold;
+  border: 1.5px solid #ffffff;
+}
+
+.doc-star {
+  position: absolute;
+  font-size: 9px;
+}
+
+.doc-star.star-1 {
+  top: 14px;
+  left: 45%;
+  color: #60a5fa;
+}
+
+.doc-star.star-2 {
+  bottom: 20px;
+  left: 38%;
+  color: #f43f5e;
+  font-size: 7px;
+}
+
+.doc-star.star-3 {
+  top: 24px;
+  right: 38%;
+  color: #fbbf24;
+  font-size: 8px;
+}

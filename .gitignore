@@ -1,0 +1,17 @@
+# Ignore a specific file
+secrets.json
+
+# Ignore all files ending in .log or .tmp
+*.log
+*.tmp
+
+# Ignore an entire directory and all its contents
+node_modules/
+build/
+
+# Ignore a file in a specific folder
+docs/notes.txt
+
+# Exception: Ignore all .log files, BUT track this specific one
+*.log
+!important.log

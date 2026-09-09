@@ -1,0 +1,25 @@
+{
+  "name": "angel-one-clone",
+  "version": "1.0.0",
+  "description": "Angel One Web Terminal Clone - Production Ready for Vercel",
+  "main": "api/index.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "nodemon backend/server.js",
+    "build": "echo 'Production ready for Vercel'"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "ejs": "^6.0.1",
+    "express": "^5.2.1",
+    "smartapi-javascript": "^1.0.27",
+    "socket.io": "^4.8.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  },
+  "engines": {
+    "node": ">=18.x"
+  }
+}

@@ -1,0 +1,314 @@
+<%
+  const pName = (typeof profileData !== 'undefined' && profileData && profileData.name) 
+    ? profileData.name 
+    : 'Budhbhushan Waghmare';
+
+  const pBalance = (typeof profileData !== 'undefined' && profileData && profileData.balance !== undefined) 
+    ? Number(profileData.balance) 
+    : 370000000;
+
+  const nameWords = pName.trim().split(/\s+/).filter(Boolean);
+  const pInitials = nameWords.length >= 2 
+    ? (nameWords[0][0] + nameWords[nameWords.length - 1][0]).toUpperCase() 
+    : (pName.slice(0, 2).toUpperCase() || 'BW');
+
+  const pClientCode = (pInitials + '9821').toUpperCase();
+
+  const formattedBal = pBalance.toLocaleString('en-IN', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
+%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/head', { title: 'Angel One - My Account', extraCss: ["/css/profile.css"] }) %>
+</head>
+<body>
+  <div class="app-container">
+    <%- include('partials/header', { activePage: 'profile' }) %>
+
+    <div class="profile-full-layout">
+      <main class="profile-page-wrapper">
+
+        <!-- My Account Sub-header -->
+        <div class="profile-subheader">
+          <h1 class="profile-subheader-title">My Account</h1>
+          <button class="btn-logout" id="btnLogout">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+              <polyline points="16 17 21 12 16 7"></polyline>
+              <line x1="21" y1="12" x2="9" y2="12"></line>
+            </svg>
+            LOGOUT
+          </button>
+        </div>
+
+        <!-- Main Content -->
+        <div class="profile-content">
+
+          <!-- ======================================== -->
+          <!-- ACCOUNT INFO CARD                        -->
+          <!-- ======================================== -->
+          <div class="account-info-card">
+            <!-- User Row -->
+            <div class="account-user-row">
+              <div class="account-user-left">
+                <div class="account-avatar-circle" id="profileAvatarCircle"><%= pInitials %></div>
+                <div class="account-name-group">
+                  <h2 class="account-full-name" id="profileFullName"><%= pName %></h2>
+                  <button class="account-view-profile-link" id="btnViewProfile">
+                    VIEW PROFILE
+                  </button>
+                </div>
+              </div>
+              <div class="account-member-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                Member since 2025
+              </div>
+            </div>
+
+            <!-- Trading Balance Panel -->
+            <div class="account-balance-panel">
+              <div class="balance-left-group">
+                <span class="balance-label">Trading Balance</span>
+                <span class="balance-amount" id="profileTradingBalance">₹ <%= formattedBal %></span>
+              </div>
+              <div class="balance-right-actions">
+                <button class="btn-withdraw" id="btnWithdraw">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                  </svg>
+                  WITHDRAW FUNDS
+                </button>
+                <button class="btn-add-funds" id="btnAddFunds">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="16"></line>
+                    <line x1="8" y1="12" x2="16" y2="12"></line>
+                  </svg>
+                  ADD FUNDS
+                </button>
+              </div>
+            </div>
+
+            <!-- Balance Footer Links -->
+            <div class="account-balance-footer">
+              <button class="balance-footer-link" id="btnBalanceSummary">
+                VIEW TRADING BALANCE SUMMARY
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </button>
+              <button class="balance-footer-link" id="btnTransactionSummary">
+                VIEW TRANSACTION SUMMARY
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- ======================================== -->
+          <!-- REPORTS SECTION                          -->
+          <!-- ======================================== -->
+          <div class="reports-section">
+            <h2 class="profile-section-title">Reports</h2>
+            <div class="reports-grid">
+              <!-- Trades & Charges -->
+              <a href="#" class="report-card" id="reportTradesCharges">
+                <div class="report-icon-badge">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2F65F6" stroke-width="2">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                  </svg>
+                </div>
+                <span class="report-card-label">Trades &amp; Charges</span>
+              </a>
+
+              <!-- Statements -->
+              <a href="#" class="report-card" id="reportStatements">
+                <div class="report-icon-badge">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2F65F6" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                  </svg>
+                </div>
+                <span class="report-card-label">Statements</span>
+              </a>
+
+              <!-- Profit & Loss -->
+              <a href="#" class="report-card" id="reportPnl">
+                <div class="report-icon-badge">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2F65F6" stroke-width="2">
+                    <line x1="12" y1="1" x2="12" y2="23"></line>
+                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                  </svg>
+                </div>
+                <span class="report-card-label">Profit &amp; Loss</span>
+              </a>
+
+              <!-- Download Reports -->
+              <a href="#" class="report-card" id="reportDownload">
+                <div class="report-icon-badge">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2F65F6" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                </div>
+                <span class="report-card-label">Download Reports</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- ======================================== -->
+          <!-- PLEDGING & PAY LATER SECTION             -->
+          <!-- ======================================== -->
+          <div class="pledging-section">
+            <h2 class="profile-section-title">Pledging &amp; Pay Later</h2>
+            <div class="pledging-grid">
+              <!-- Pledge Holdings -->
+              <div class="pledge-card mint-bg" id="cardPledgeHoldings">
+                <h3 class="pledge-card-title">Pledge Holdings for Extra Margin</h3>
+                <p class="pledge-card-sub">Increase your trading balance</p>
+              </div>
+
+              <!-- MTF -->
+              <div class="pledge-card lavender-bg" id="cardMtf">
+                <h3 class="pledge-card-title">MTF</h3>
+                <p class="pledge-card-sub">Buy upto 4 times quantity of equity stocks with just 0.041% interest per day</p>
+              </div>
+
+              <!-- Transfer Stocks -->
+              <div class="pledge-card mint-bg" id="cardTransferStocks">
+                <h3 class="pledge-card-title">Transfer Stocks</h3>
+                <p class="pledge-card-sub">Transferring stocks to any Demat account quickly and securely</p>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /.profile-content -->
+      </main>
+    </div><!-- /.profile-full-layout -->
+
+    <!-- ============================================== -->
+    <!-- MODAL: VIEW PROFILE DETAILS                    -->
+    <!-- ============================================== -->
+    <div class="profile-modal-overlay" id="modalViewProfile">
+      <div class="profile-modal">
+        <div class="profile-modal-header">
+          <h3 class="profile-modal-title">Profile Details</h3>
+          <button class="profile-modal-close" id="closeModalViewProfile">✕</button>
+        </div>
+        <div class="profile-modal-body">
+          <div class="profile-detail-row">
+            <span class="profile-detail-key">Full Name</span>
+            <span class="profile-detail-val" id="modalProfileName"><%= pName %></span>
+          </div>
+          <div class="profile-detail-row">
+            <span class="profile-detail-key">Client Code</span>
+            <span class="profile-detail-val" id="modalClientCode"><%= pClientCode %></span>
+          </div>
+          <div class="profile-detail-row">
+            <span class="profile-detail-key">DP ID</span>
+            <span class="profile-detail-val">1208160012345678</span>
+          </div>
+          <div class="profile-detail-row">
+            <span class="profile-detail-key">PAN Number</span>
+            <span class="profile-detail-val">BWKPW9821X</span>
+          </div>
+          <div class="profile-detail-row">
+            <span class="profile-detail-key">Email</span>
+            <span class="profile-detail-val" id="modalProfileEmail"><%= pName.toLowerCase().replace(/\s+/g, '.') %>@gmail.com</span>
+          </div>
+          <div class="profile-detail-row">
+            <span class="profile-detail-key">Mobile</span>
+            <span class="profile-detail-val">+91 98765 43210</span>
+          </div>
+          <div class="profile-detail-row">
+            <span class="profile-detail-key">Bank</span>
+            <span class="profile-detail-val">HDFC Bank - XXXX5678</span>
+          </div>
+          <div class="profile-detail-row">
+            <span class="profile-detail-key">Member Since</span>
+            <span class="profile-detail-val">2025</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- MODAL: ADD FUNDS                               -->
+    <!-- ============================================== -->
+    <div class="profile-modal-overlay" id="modalAddFunds">
+      <div class="profile-modal">
+        <div class="profile-modal-header">
+          <h3 class="profile-modal-title">Add Funds</h3>
+          <button class="profile-modal-close" id="closeModalAddFunds">✕</button>
+        </div>
+        <div class="profile-modal-body">
+          <div>
+            <p class="funds-modal-label">Enter Amount (₹)</p>
+            <input type="number" class="funds-modal-amount-input" id="addFundsInput" placeholder="0.00" min="1">
+          </div>
+          <div>
+            <p class="funds-modal-label">Quick Select</p>
+            <div class="funds-quick-amounts">
+              <button class="btn-quick-amt" data-amt="1000">₹ 1,000</button>
+              <button class="btn-quick-amt" data-amt="5000">₹ 5,000</button>
+              <button class="btn-quick-amt" data-amt="10000">₹ 10,000</button>
+              <button class="btn-quick-amt" data-amt="25000">₹ 25,000</button>
+              <button class="btn-quick-amt" data-amt="50000">₹ 50,000</button>
+            </div>
+          </div>
+          <button class="btn-proceed" id="btnProceedAddFunds">PROCEED TO PAY</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- MODAL: WITHDRAW FUNDS                          -->
+    <!-- ============================================== -->
+    <div class="profile-modal-overlay" id="modalWithdrawFunds">
+      <div class="profile-modal">
+        <div class="profile-modal-header">
+          <h3 class="profile-modal-title">Withdraw Funds</h3>
+          <button class="profile-modal-close" id="closeModalWithdrawFunds">✕</button>
+        </div>
+        <div class="profile-modal-body">
+          <div>
+            <p class="funds-modal-label">Available Balance</p>
+            <div id="modalWithdrawAvailable" style="font-size: 20px; font-weight: 700; color: #10233F; margin-bottom: 10px;">₹ <%= formattedBal %></div>
+          </div>
+          <div>
+            <p class="funds-modal-label">Enter Withdrawal Amount (₹)</p>
+            <input type="number" class="funds-modal-amount-input" id="withdrawFundsInput" placeholder="0.00" min="1" max="<%= pBalance %>">
+          </div>
+          <div>
+            <p class="funds-modal-label">Quick Select</p>
+            <div class="funds-quick-amounts">
+              <button class="btn-quick-amt" data-wamt="5000">₹ 5,000</button>
+              <button class="btn-quick-amt" data-wamt="25000">₹ 25,000</button>
+              <button class="btn-quick-amt" data-wamt="100000">₹ 1,00,000</button>
+              <button class="btn-quick-amt" id="btnQuickAmtAll" data-wamt="<%= pBalance %>">₹ <%= formattedBal %> (All)</button>
+            </div>
+          </div>
+          <button class="btn-proceed" id="btnProceedWithdraw">WITHDRAW</button>
+        </div>
+      </div>
+    </div>
+
+    <%- include('partials/ask-angel-btn') %>
+  </div>
+
+  <%- include('partials/scripts', { extraJs: ["/js/watchlist.js", "/js/profile.js"] }) %>
+</body>
+</html>

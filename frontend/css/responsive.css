@@ -1,0 +1,137 @@
+/* Responsive Breakpoints & Mobile Drawer Styles */
+
+@media (max-width: 1024px) {
+  :root {
+    --watchlist-width: 300px;
+  }
+
+  .discovery-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .ipo-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .most-bought-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .index-detail-body {
+    grid-template-columns: 1fr;
+  }
+
+  .days-range-container {
+    border-right: none;
+    border-bottom: 1px solid #F1F5F9;
+    padding-right: 0;
+    padding-bottom: 20px;
+  }
+
+  .pledging-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-left .market-ticker {
+    display: none;
+  }
+
+  .header-center {
+    max-width: 200px;
+    margin: 0 10px;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+    align-items: center;
+  }
+
+  .portfolio-summary-card {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .summary-column:nth-child(2)::after {
+    display: none;
+  }
+
+  .breakup-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pledging-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Watchlist Drawer Mode on Mobile */
+  .watchlist-sidebar {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    bottom: 0;
+    width: 320px;
+    box-shadow: 4px 0 16px rgba(0, 0, 0, 0.15);
+    transform: translateX(-100%);
+    z-index: 2000;
+  }
+
+  .watchlist-sidebar.mobile-open {
+    transform: translateX(0);
+  }
+
+  .watchlist-overlay {
+    display: none;
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(16, 35, 63, 0.4);
+    z-index: 1999;
+  }
+
+  .watchlist-overlay.show {
+    display: block;
+  }
+
+  .content-area {
+    padding: 12px 16px;
+  }
+
+  .discovery-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .most-bought-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .header-center {
+    display: none;
+  }
+
+  .discovery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .most-bought-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-summary-card {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .summary-column::after {
+    display: none !important;
+  }
+}

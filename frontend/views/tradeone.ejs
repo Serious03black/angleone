@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/head', { title: 'Angel One - TradeOne Trading Terminal' }) %>
+</head>
+<body>
+  <div class="app-container">
+<!-- Sticky Top Header -->
+    <%- include('partials/header', { activePage: 'tradeone' }) %>
+
+
+    <!-- Main Layout Content -->
+    <div class="main-layout">
+      <!-- Left Watchlist Sidebar -->
+      <%- include('partials/watchlist') %>
+
+      <!-- Main Content Area -->
+      <main class="content-area">
+        <div class="sub-tabs-container">
+          <div class="sub-tabs">
+            <a class="sub-tab-item active">TradeOne Terminal</a>
+          </div>
+          <button id="toggle-watchlist-btn" class="toggle-watchlist-btn">👁 HIDE WATCHLIST</button>
+        </div>
+
+        <div style="display: flex; justify-content: center; padding: 20px 0;">
+          <div class="tradeone-card">
+            <div class="tradeone-header-row">
+              <div>
+                <span id="terminal-symbol" class="tradeone-sym-title">NTPC</span>
+                <span style="font-size: 11px; color: #94A3B8; margin-left: 6px;">NSE</span>
+              </div>
+              <div class="tradeone-sym-price val-up">₹341.55 <span style="font-size: 11px;">+2.10 (+0.62%)</span></div>
+            </div>
+
+            <div class="tab-toggle-group">
+              <button id="terminal-buy-btn" class="tab-toggle-btn buy-active">BUY</button>
+              <button id="terminal-sell-btn" class="tab-toggle-btn">SELL</button>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label">PRODUCT TYPE</label>
+                <select class="form-select">
+                  <option>Delivery (CNC)</option>
+                  <option>Intraday (MIS)</option>
+                  <option>Pay Later (MTF)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">ORDER TYPE</label>
+                <select class="form-select">
+                  <option>Limit Order</option>
+                  <option>Market Order</option>
+                  <option>Stop Loss</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">QUANTITY</label>
+                <input id="terminal-qty" type="number" class="form-input" value="10" min="1">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">PRICE (₹)</label>
+                <input id="terminal-price" type="number" class="form-input" value="341.55" step="0.05">
+              </div>
+            </div>
+
+            <div class="margin-strip">
+              <span style="color: #64748B;">Required Margin: <strong id="req-margin" style="color: #10233F;">₹3,415.50</strong></span>
+              <span style="color: #64748B;">Available Balance: <strong style="color: #00A88F;">₹50,000.00</strong></span>
+            </div>
+
+            <button id="terminal-submit-btn" class="btn btn-primary" style="width: 100%; height: 44px; font-size: 14px;">PLACE BUY ORDER</button>
+          </div>
+        </div>
+
+      </main>
+    </div>
+
+    <!-- Floating Ask Angel Button -->
+    <%- include('partials/ask-angel-btn') %>
+  </div>
+
+  <%- include('partials/scripts', { extraJs: ["/js/watchlist.js"] }) %>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const qtyInput = document.getElementById("terminal-qty");
+      const priceInput = document.getElementById("terminal-price");
+      const marginEl = document.getElementById("req-margin");
+      const submitBtn = document.getElementById("terminal-submit-btn");
+
+      function updateMargin() {
+        const q = parseFloat(qtyInput.value) || 0;
+        const p = parseFloat(priceInput.value) || 0;
+        marginEl.innerText = `₹${(q * p).toLocaleString('en-IN', { minimumFractionDigits: 2 })}`;
+      }
+
+      qtyInput.addEventListener("input", updateMargin);
+      priceInput.addEventListener("input", updateMargin);
+
+      submitBtn.addEventListener("click", () => {
+        const sym = document.getElementById("terminal-symbol").innerText;
+        showToast(`✓ Trade Executed: Placed order for ${qtyInput.value} shares of ${sym}`);
+      });
+
+      window.onStockSelected = function(stock) {
+        if(!stock) return;
+        document.getElementById("terminal-symbol").innerText = stock.symbol;
+        priceInput.value = stock.price.toFixed(2);
+        updateMargin();
+      };
+    });
+  </script>
+</body>
+</html>

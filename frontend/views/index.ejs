@@ -1,0 +1,513 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/head', { title: 'Angel One - Modern Trading & Investment Dashboard', extraCss: ["/css/dashboard.css"] }) %>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sticky Top Header -->
+    <%- include('partials/header', { activePage: 'home' }) %>
+
+
+
+
+
+
+    <!-- Main Layout Content -->
+    <div class="main-layout">
+      <!-- Full Width Home Dashboard Content -->
+      <main class="content-area full-width">
+        <div class="dashboard-container">
+          <div class="b1">
+ <!-- Banner 1: Commodity Market Live -->
+  <div class="live-banner">
+            <div class="live-banner-left">
+              <span class="live-tag">
+                <span style="font-size: 8px;"><img src="/assets/wifi.png" alt="" width="14" ></span> LIVE
+              </span>
+              <span class="live-text">Commodities market is open (till 11:30 PM)</span>
+            </div>
+            <a href="/markets" class="btn btn-primary btn-sm">VIEW COMMODITIES</a>
+          </div>
+          
+
+           <!-- Banner 2: Get Ready to Invest -->
+          <div class="invest-banner">
+            <div class="invest-banner-left">
+              <div class="coin-illustration">₹</div>
+              <div class="invest-banner-info">
+                <h3>Get ready to Invest</h3>
+                <p>Add funds to start your trading journey with Angel One</p>
+              </div>
+            </div>
+            <button class="btn btn-primary" onclick="showToast('✓ Redirecting to Add Funds Gateway...')">ADD FUNDS</button>
+          </div>
+
+          <div class="discovery-section">
+            <h2 class="discovery-section-title">What are you looking for today?</h2>
+            <div class="discovery-grid">
+              <a href="/markets" class="discovery-card">
+                <div class="discovery-icon-wrapper">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg>
+                </div>
+                <span class="discovery-card-title">Stock Discovery</span>
+              </a>
+
+              <a href="/markets" class="discovery-card">
+                <div class="discovery-icon-wrapper">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                </div>
+                <span class="discovery-card-title">Mutual Funds</span>
+              </a>
+
+              <a href="/markets" class="discovery-card">
+                <div class="discovery-icon-wrapper">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                </div>
+                <span class="discovery-card-title">Futures & Options</span>
+              </a>
+
+              <a href="/markets" class="discovery-card">
+                <div class="discovery-icon-wrapper">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                </div>
+                <span class="discovery-card-title">ETF Discovery</span>
+              </a>
+
+              <a href="/markets" class="discovery-card">
+                <div class="discovery-icon-wrapper">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"></path></svg>
+                </div>
+                <span class="discovery-card-title">News Discovery</span>
+              </a>
+            </div>
+          </div>
+
+</div>
+
+
+
+    <div class="b2 box">
+
+          <!-- IPO Section -->
+          <div class="ipo-section">
+            <div class="card-header" style="margin-bottom: 12px;">
+              <h2 class="card-title" style="font-size: 15px;">Invest in Latest IPOs</h2>
+              <a href="/markets" class="card-link">VIEW ALL OPEN & UPCOMING IPO &gt;</a>
+            </div>
+
+            <div class="ipo-grid">
+              <!-- IPO Card 1 -->
+              <div class="ipo-card">
+                <div class="ipo-up">
+                  <div class="ipo-header">
+                    <div class="ipo-brand">
+                      <div class="ipo-logo-badge">MM</div>
+                      <div>
+                        <div class="ipo-name">MILKY MIST DAIRY FOOD LTD</div>
+                        <span class="ipo-type-badge">MAINBOARD</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="ipo-details-grid">
+                    <div class="ipo-detail-item">
+                      <span class="ipo-label">Closes On</span>
+                      <span class="ipo-value">13 Aug 26</span>
+                    </div>
+                    <div class="ipo-detail-item right">
+                      <span class="ipo-label">Min. Investment</span>
+                      <span class="ipo-value">₹14,231</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="ipo-footer">
+                  <span class="ipo-label">Overall Subscription</span>
+                  <span class="ipo-sub-val">4.1x</span>
+                </div>
+              </div>
+
+              <!-- IPO Card 2 -->
+              <div class="ipo-card">
+                <div class="ipo-up">
+                  <div class="ipo-header">
+                    <div class="ipo-brand">
+                      <div class="ipo-logo-badge" ></div>
+                      <div>
+                        <div class="ipo-name">SHIPROCKET LTD</div>
+                        <span class="ipo-type-badge">MAINBOARD</span>
+                      </div>
+                    </div>
+                    
+                  </div>
+
+                  <div class="ipo-details-grid">
+                    <div class="ipo-detail-item">
+                      <span class="ipo-label">Closes On</span>
+                      <span class="ipo-value">14 Aug 26</span>
+                    </div>
+                    <div class="ipo-detail-item right">
+                      <span class="ipo-label">Min. Investment</span>
+                      <span class="ipo-value">₹14,168</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="ipo-footer">
+                  <span class="ipo-label">Overall Subscription</span>
+                  <span class="ipo-sub-val">1.65x</span>
+                </div>
+              </div>
+
+              <!-- IPO Card 3 -->
+              <div class="ipo-card">
+                <div class="ipo-up">
+                  <div class="ipo-header">
+                    <div class="ipo-brand">
+                      <div class="ipo-logo-badge" ></div>
+                      <div>
+                        <div class="ipo-name">BEHARI LAL ENGINEERING LTD</div>
+                        <span class="ipo-type-badge">MAINBOARD</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="ipo-details-grid">
+                    <div class="ipo-detail-item">
+                      <span class="ipo-label">Closes On</span>
+                      <span class="ipo-value">14 Aug 26</span>
+                    </div>
+                    <div class="ipo-detail-item right">
+                      <span class="ipo-label">Min. Investment</span>
+                      <span class="ipo-value">₹14,092</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="ipo-footer">
+                  <span class="ipo-label">Overall Subscription</span>
+                  <span class="ipo-sub-val">3.87x</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+    </div>
+
+
+
+
+
+
+      
+          <div class="b3 box">
+            <section class="section fo-trade-section">
+              <h2 class="section-heading card-title">Trade in Futures & Options</h2>
+          <!-- Top Split: Heatmap Grid + Stock F&O List -->
+          <div class="fo-top-row">
+            <!-- Left: Sector Heatmap -->
+            <div class="heatmap-container">
+              
+              <div class="heatmap-grid">
+                <!-- Row 1 -->
+                <div class="sector-card green active" data-sector="Consumer">
+                  <span class="sector-name">Consumer</span>
+                  <span class="sector-change">+0.91%</span>
+                </div>
+                <div class="sector-card green" data-sector="Infra">
+                  <span class="sector-name">Infra</span>
+                  <span class="sector-change">+0.34%</span>
+                </div>
+                <div class="sector-card green" data-sector="Technology">
+                  <span class="sector-name">Technology</span>
+                  <span class="sector-change">+0.34%</span>
+                </div>
+                <div class="sector-card green" data-sector="Realty">
+                  <span class="sector-name">Realty</span>
+                  <span class="sector-change">+0.28%</span>
+                </div>
+                <div class="sector-card green" data-sector="PSE">
+                  <span class="sector-name">PSE</span>
+                  <span class="sector-change">+0.18%</span>
+                </div>
+                <!-- Row 2 -->
+                <div class="sector-card green" data-sector="Energy">
+                  <span class="sector-name">Energy</span>
+                  <span class="sector-change">+0.02%</span>
+                </div>
+                <div class="sector-card red" data-sector="Pharma">
+                  <span class="sector-name">Pharma</span>
+                  <span class="sector-change">-0.00%</span>
+                </div>
+                <div class="sector-card red" data-sector="Services">
+                  <span class="sector-name">Services</span>
+                  <span class="sector-change">-0.01%</span>
+                </div>
+                <div class="sector-card red" data-sector="Auto">
+                  <span class="sector-name">Auto</span>
+                  <span class="sector-change">-0.02%</span>
+                </div>
+                <div class="sector-card red" data-sector="Finance">
+                  <span class="sector-name">Finance</span>
+                  <span class="sector-change">-0.16%</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Selected Sector Stock F&O Table -->
+            <div class="sector-list-container">
+              <div class="sector-list-header">
+                <h3 class="sector-list-title" id="selected-sector-title">Consumer Sector F&O</h3>
+                <a href="#" class="section-link card-link ">VIEW ALL STOCK F&O &gt;</a>
+              </div>
+              <div class="fo-table-wrapper">
+                <table class="fo-table">
+                  <thead>
+                    <tr>
+                      <th style="text-align: left;">F&O Scrips</th>
+                      <th style="text-align: right;">LTP</th>
+                      <th style="text-align: right;">LTP Change (%)</th>
+                    </tr>
+                  </thead>
+                  <tbody id="sector-table-body">
+                    <tr>
+                      <td class="fno">
+                        <span class="scrip-name">COLPAL</span>
+                        <span class="scrip-date">25 Aug 2026</span>
+                      </td>
+                      <td class="text-right">
+                        <span class="price loss">₹1,993.80 ▼</span>
+                      </td>
+                      <td class="text-right">
+                        <span class="change loss">-12.50 (-0.62%)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="fno">
+                        <span class="scrip-name">DABUR</span>
+                        <span class="scrip-date">25 Aug 2026</span>
+                      </td>
+                      <td class="text-right">
+                        <span class="price gain">₹410.50 ▲</span>
+                      </td>
+                      <td class="text-right">
+                        <span class="change gain">+2.65 (0.65%)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="fno">
+                        <span class="scrip-name">HINDUNILVR</span>
+                        <span class="scrip-date">25 Aug 2026</span>
+                      </td>
+                      <td class="text-right">
+                        <span class="price gain">₹2,093.00 ▲</span>
+                      </td>
+                      <td class="text-right">
+                        <span class="change gain">+29.50 (1.43%)</span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Split: Index F&O vs Commodities Tables -->
+          <div class="fo-bottom-row">
+
+            <!-- Left Box: Index F&O -->
+            <div class="fo-column-box">
+              <div class="column-header">
+                <h3 class="column-title">Index F&O</h3>
+                <a href="#" class="section-link card-link ">VIEW ALL INDEX F&O &gt;</a>
+              </div>
+
+              <!-- Filter Controls -->
+              <div class="filter-controls">
+                <select class="pill-select" id="index-select">
+                  <option>Nifty 50</option>
+                  <option>Bank Nifty</option>
+                  <option>Fin Nifty</option>
+                </select>
+                <select class="pill-select" id="index-expiry-select">
+                  <option>18 Aug 2026</option>
+                  <option>25 Aug 2026</option>
+                  <option>01 Sep 2026</option>
+                </select>
+                <select class="pill-select" id="index-type-select">
+                  <option>CE (Call Option)</option>
+                  <option>PE (Put Option)</option>
+                </select>
+              </div>
+
+              <!-- Table -->
+              <table class="fo-table">
+                <thead>
+                  <tr>
+                    <th style="text-align: left;">Options</th>
+                    <th style="text-align: right;">LTP</th>
+                    <th style="text-align: right;">Price Change</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="option-name-row">
+                        <div class="scrip-name">NIFTY 24350</div>
+                        <span class="scrip-date">18 Aug 2026</span>
+                        <span class="tag-badge itm-badge">ITM</span>
+                      </div>
+                    </td>
+                    <td class="text-right">
+                      <span class="price loss">₹152.20 ▼</span>
+                    </td>
+                    <td class="text-right">
+                      <span class="change loss">-22.70 (-12.98%)</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="option-name-row">
+                        <div class="scrip-name">NIFTY 24400</div>
+                        <span class="scrip-date">18 Aug 2026</span>
+                        <span class="tag-badge atm-badge">ATM</span>
+                      </div>
+                    </td>
+                    <td class="text-right">
+                      <span class="price loss">₹122.05 ▼</span>
+                    </td>
+                    <td class="text-right">
+                      <span class="change loss">-23.00 (-15.86%)</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="option-name-row">
+                        <div class="scrip-name">NIFTY 24450</div>
+                        <span class="scrip-date">18 Aug 2026</span>
+                        <span class="tag-badge otm-badge">OTM</span>
+                      </div>
+                    </td>
+                    <td class="text-right">
+                      <span class="price loss">₹95.75 ▼</span>
+                    </td>
+                    <td class="text-right">
+                      <span class="change loss">-23.50 (-19.71%)</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Right Box: Commodities -->
+            <div class="fo-column-box">
+              <div class="column-header">
+                <h3 class="column-title">Commodities</h3>
+                <a href="#" class="section-link card-link ">VIEW ALL COMMODITIES &gt;</a>
+              </div>
+
+              <!-- Filter Controls -->
+              <div class="filter-controls">
+                <select class="pill-select" id="comm-select">
+                  <option>Crude Oil</option>
+                  <option>Gold</option>
+                  <option>Natural Gas</option>
+                  <option>Silver</option>
+                </select>
+                <select class="pill-select" id="comm-expiry-select">
+                  <option>17 Aug 2026</option>
+                  <option>24 Aug 2026</option>
+                </select>
+                <select class="pill-select" id="comm-type-select">
+                  <option>CE (Call Option)</option>
+                  <option>PE (Put Option)</option>
+                </select>
+              </div>
+
+              <!-- Table -->
+              <table class="fo-table">
+                <thead>
+                  <tr>
+                    <th style="text-align: left;">Options</th>
+                    <th style="text-align: right;">LTP</th>
+                    <th style="text-align: right;">Price Change</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="option-name-row">
+                        <div class="scrip-name">7750 CRUDEOIL</div>
+                        <span class="scrip-date">17 Aug 2026</span>
+                        <span class="tag-badge itm-badge">ITM</span>
+                      </div>
+                    </td>
+                    <td class="text-right">
+                      <span class="price loss">₹192.00 ▼</span>
+                    </td>
+                    <td class="text-right">
+                      <span class="change loss">-6.40 (-3.23%)</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="option-name-row">
+                        <div class="scrip-name">7800 CRUDEOIL</div>
+                        <span class="scrip-date">17 Aug 2026</span>
+                        <span class="tag-badge atm-badge">ATM</span>
+                      </div>
+                    </td>
+                    <td class="text-right">
+                      <span class="price loss">₹164.00 ▼</span>
+                    </td>
+                    <td class="text-right">
+                      <span class="change loss">-6.10 (-3.59%)</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="option-name-row">
+                        <div class="scrip-name">7850 CRUDEOIL</div>
+                        <span class="scrip-date">17 Aug 2026</span>
+                        <span class="tag-badge otm-badge">OTM</span>
+                      </div>
+                    </td>
+                    <td class="text-right">
+                      <span class="price loss">₹140.70 ▼</span>
+                    </td>
+                    <td class="text-right">
+                      <span class="change loss">-5.40 (-3.7%)</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </section>
+          </div>
+          <div class="b4 box"></div>
+          <div class="b5 box"></div>
+          <div class="b6 box"></div>  
+          <div class="b7 box"></div>
+          <div class="b8 box"></div>
+          <div class="b9 box"></div>
+          <div class="b10 box"></div>
+          <div class="b11 box"></div>
+         <div class="b12 box"></div>
+
+         
+        </div>  
+      </main>
+    </div>
+
+    <!-- Floating Ask Angel AI Button -->
+    <%- include('partials/ask-angel-btn') %>
+  </div>
+
+  <%- include('partials/scripts') %>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/head', { title: 'Angel One - Positions', extraCss: ["/css/positions.css"] }) %>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sticky Top Header with Active Page: positions -->
+    <%- include('partials/header', { activePage: 'positions' }) %>
+
+    <!-- Main Layout Content -->
+    <div class="main-layout">
+      <!-- Left Watchlist Sidebar -->
+      <%- include('partials/watchlist') %>
+
+      <!-- Main Positions Terminal Content Area -->
+      <main class="positions-content-area">
+        <!-- Top Action & Search Bar -->
+        <div class="positions-top-bar">
+          <div class="positions-header-left">
+            <h1 class="positions-title" id="positionsCountTitle">Position(0)</h1>
+          </div>
+
+          <div class="positions-header-right">
+            <!-- Search Bar -->
+            <div class="positions-search-box">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="text" id="positionsSearchInput" class="positions-search-input" placeholder="Search" autocomplete="off">
+            </div>
+
+            <!-- Filter Button -->
+            <button class="positions-icon-btn" id="btnFilter" title="Filter positions">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="4" y1="21" x2="4" y2="14"></line>
+                <line x1="4" y1="10" x2="4" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12" y2="3"></line>
+                <line x1="20" y1="21" x2="20" y2="16"></line>
+                <line x1="20" y1="12" x2="20" y2="3"></line>
+                <line x1="1" y1="14" x2="7" y2="14"></line>
+                <line x1="9" y1="8" x2="15" y2="8"></line>
+                <line x1="17" y1="16" x2="23" y2="16"></line>
+              </svg>
+            </button>
+
+            <!-- Orange Analytics Ribbon Icon Button -->
+            <button class="positions-icon-btn btn-analytics" id="btnAnalytics" title="Position Analytics">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 3H5c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/>
+              </svg>
+            </button>
+
+            <!-- % Toggle Button -->
+            <button class="positions-icon-btn btn-percent" id="btnPercentToggle" title="Toggle % View">%</button>
+
+            <!-- Download CSV Export Button -->
+            <button class="positions-icon-btn" id="btnExportCsv" title="Export Positions">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+            </button>
+
+            <!-- EXIT ALL Button -->
+            <button class="positions-exit-all-btn" id="exitAllBtn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                <polyline points="16 17 21 12 16 7"></polyline>
+                <line x1="21" y1="12" x2="9" y2="12"></line>
+              </svg>
+              EXIT ALL
+            </button>
+          </div>
+        </div>
+
+        <!-- Positions Data Table Container -->
+        <div class="positions-table-wrap">
+          <table class="positions-table">
+            <thead>
+              <tr>
+                <th class="th-scrip sortable" data-sort="scrip">
+                  Scrip Name <span class="sort-icon-glyph">⬍</span>
+                </th>
+                <th class="th-action">
+                  Action/Product Type
+                </th>
+                <th class="th-qty sortable" data-sort="qty">
+                  Qty.
+                </th>
+                <th class="th-atp sortable" data-sort="atp">
+                  ATP
+                </th>
+                <th class="th-ltp sortable" data-sort="ltp">
+                  LTP
+                </th>
+                <th class="th-gl sortable" data-sort="gl">
+                  Gain & Loss <span class="sort-icon-glyph">⬍</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody id="positionsTableTbody">
+              <tr>
+                <td colspan="6" class="positions-status-row">
+                  <div class="positions-loading-spinner"></div>
+                  <div>Loading portfolio positions...</div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Sticky Bottom Summary Bar -->
+        <div class="positions-summary-bar">
+          <div class="summary-left-group">
+            <div class="total-gl-header">
+              <span>Total G/L</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </div>
+            <button class="btn-secure-exit" id="btnSecureExit">
+              <svg width="14" height="14" viewBox="0 0 24 24">
+                <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 15l-4-4 1.41-1.41L10 13.17l6.59-6.59L18 8l-8 8z"/>
+              </svg>
+              SECURE EXIT
+            </button>
+          </div>
+
+          <div class="summary-right-group">
+            <div class="total-gl-value" id="totalGlValue">0.00</div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="positionsToast" class="positions-toast"></div>
+
+    <!-- Floating Ask Angel Button -->
+    <%- include('partials/ask-angel-btn') %>
+  </div>
+
+  <%- include('partials/scripts', { extraJs: ["/js/watchlist.js", "/js/positions.js"] }) %>
+</body>
+</html>

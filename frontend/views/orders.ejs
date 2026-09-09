@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/head', { title: 'Angel One - Orders Terminal', extraCss: ["/css/orders.css"] }) %>
+</head>
+<body>
+  <div class="app-container">
+   <!-- Sticky Top Header -->
+    <%- include('partials/header', { activePage: 'orders' }) %>
+
+
+    <!-- Main Layout Content -->
+    <div class="main-layout">
+      <!-- Left Watchlist Sidebar -->
+      <%- include('partials/watchlist') %>
+
+      <!-- Main Content Area -->
+      <main class="content-area">
+        <!-- Sub Tabs Bar -->
+        <div class="sub-tabs-container">
+          <div class="sub-tabs">
+            <a class="sub-tab-item orders-tab-item active">Open Orders</a>
+            <a class="sub-tab-item orders-tab-item">Order History</a>
+            <a class="sub-tab-item orders-tab-item">Stock SIP</a>
+            <a class="sub-tab-item orders-tab-item">GTT</a>
+            <a class="sub-tab-item orders-tab-item">Basket Orders</a>
+            <a class="sub-tab-item orders-tab-item">Alerts</a>
+          </div>
+          <button id="toggle-watchlist-btn" class="toggle-watchlist-btn">👁 HIDE WATCHLIST</button>
+        </div>
+
+        <!-- Orders Empty State Container -->
+        <div class="orders-empty-state-container">
+          <div class="empty-state-illustration">
+            <img src="/assets/illustrations/empty-orders.svg" alt="No Open Orders Illustration" width="180" height="140">
+          </div>
+          <h2 class="empty-state-title">You don't have any open orders</h2>
+          <p class="empty-state-subtitle">Check Angel One's Recommendations</p>
+          <button id="view-ideas-btn" class="empty-state-action-btn">VIEW TRADING IDEAS</button>
+        </div>
+
+      </main>
+    </div>
+
+    <!-- Floating Ask Angel Button -->
+    <%- include('partials/ask-angel-btn') %>
+  </div>
+
+  <%- include('partials/scripts', { extraJs: ["/js/watchlist.js","/js/orders.js"] }) %>
+</body>
+</html>

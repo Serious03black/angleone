@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 180" width="200" height="150">
+  <!-- Dashed background accent curve -->
+  <path d="M 30 110 C 20 40, 110 20, 160 60 C 210 100, 220 50, 200 30" fill="none" stroke="#93C5FD" stroke-width="1.5" stroke-dasharray="4,4" />
+  
+  <!-- Back Envelope/Card Layer -->
+  <rect x="50" y="55" width="130" height="85" rx="8" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.5" filter="drop-shadow(0 4px 6px rgba(0,0,0,0.04))" />
+  <rect x="50" y="55" width="130" height="24" rx="8" fill="#EFF6FF" />
+  
+  <!-- Card Header Line & Decorative Bars -->
+  <line x1="62" y1="92" x2="105" y2="92" stroke="#E5E7EB" stroke-width="4" stroke-linecap="round" />
+  <line x1="62" y1="104" x2="90" y2="104" stroke="#E5E7EB" stroke-width="4" stroke-linecap="round" />
+  <rect x="122" y="90" width="44" height="36" rx="4" fill="#DBEAFE" />
+
+  <!-- Front Green Check Badge -->
+  <circle cx="58" cy="67" r="12" fill="#10B981" />
+  <path d="M52 67 L56 71 L64 63" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- Floating particles -->
+  <circle cx="35" cy="70" r="3" fill="#60A5FA" opacity="0.6" />
+  <circle cx="205" cy="85" r="2.5" fill="#F43F5E" opacity="0.6" />
+  <polygon points="150,32 154,42 144,38" fill="#3B82F6" opacity="0.8" />
+  <circle cx="180" cy="30" r="2" fill="#F59E0B" />
+</svg>

@@ -1,0 +1,562 @@
+/*
+  Angel One - Profile / My Account Page Styles
+  Pixel-accurate match to reference screenshot
+*/
+
+/* ==========================================================================
+   PAGE LAYOUT
+   ========================================================================== */
+.profile-full-layout {
+  display: flex;
+  flex: 1;
+  margin-top: var(--header-height);
+}
+
+.profile-page-wrapper {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  background: #F3F6FF;
+  min-height: calc(100vh - var(--header-height));
+  padding: 0;
+}
+
+/* ==========================================================================
+   MY ACCOUNT SUB-HEADER BAR
+   ========================================================================== */
+.profile-subheader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 10px;
+  background: #FFFFFF;
+  border-bottom: 1px solid #E5E7EB;
+}
+
+.profile-subheader-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #10233F;
+  margin: 0;
+}
+
+.btn-logout {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  color: #EF4444;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  transition: opacity 0.15s ease;
+  padding: 0;
+}
+
+.btn-logout:hover {
+  opacity: 0.75;
+}
+
+.btn-logout svg {
+  stroke: #EF4444;
+}
+
+/* ==========================================================================
+   MAIN CONTENT AREA
+   ========================================================================== */
+.profile-content {
+  width: 100%;
+  margin: 0;
+  padding: 16px 10px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ==========================================================================
+   ACCOUNT INFO CARD
+   ========================================================================== */
+.account-info-card {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* User Row (avatar + name + member since) */
+.account-user-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid #F1F5F9;
+}
+
+.account-user-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.account-avatar-circle {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #DBEAFE;
+  color: #2563EB;
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 2px solid #BFDBFE;
+}
+
+.account-name-group {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.account-full-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #10233F;
+  margin: 0;
+}
+
+.account-view-profile-link {
+  font-size: 12px;
+  font-weight: 600;
+  color: #2F65F6;
+  text-decoration: none;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.account-view-profile-link:hover {
+  text-decoration: underline;
+}
+
+.account-member-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #64748B;
+  font-weight: 400;
+}
+
+.account-member-badge svg {
+  stroke: #64748B;
+}
+
+/* Trading Balance Panel */
+.account-balance-panel {
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.balance-left-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.balance-label {
+  font-size: 11px;
+  color: #64748B;
+  font-weight: 400;
+}
+
+.balance-amount {
+  font-size: 22px;
+  font-weight: 700;
+  color: #10233F;
+  letter-spacing: -0.5px;
+}
+
+.balance-right-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-withdraw {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border: 1.5px solid #2F65F6;
+  border-radius: 6px;
+  background: #FFFFFF;
+  color: #2F65F6;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  transition: all 0.15s ease;
+}
+
+.btn-withdraw:hover {
+  background: #EEF2FF;
+}
+
+.btn-withdraw svg {
+  stroke: #2F65F6;
+}
+
+.btn-add-funds {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border: 1.5px solid #2F65F6;
+  border-radius: 6px;
+  background: #2F65F6;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  transition: all 0.15s ease;
+}
+
+.btn-add-funds:hover {
+  background: #1E4ED8;
+  border-color: #1E4ED8;
+}
+
+.btn-add-funds svg {
+  stroke: #FFFFFF;
+}
+
+/* Balance Footer Links */
+.account-balance-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+  border-top: 1px solid #F1F5F9;
+  background: #FAFBFF;
+}
+
+.balance-footer-link {
+  font-size: 11.5px;
+  color: #2F65F6;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.balance-footer-link:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   REPORTS SECTION
+   ========================================================================== */
+.profile-section-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #10233F;
+  margin: 0 0 14px 0;
+}
+
+.reports-section {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 10px;
+  padding: 20px 24px;
+}
+
+.reports-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.report-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-decoration: none;
+}
+
+.report-card:hover {
+  border-color: #2F65F6;
+  background: #F8FAFF;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(47, 101, 246, 0.1);
+}
+
+.report-icon-badge {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: #EEF2FF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.report-icon-badge svg {
+  stroke: #2F65F6;
+}
+
+.report-card-label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #10233F;
+}
+
+/* ==========================================================================
+   PLEDGING & PAY LATER SECTION
+   ========================================================================== */
+.pledging-section {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 10px;
+  padding: 20px 24px;
+}
+
+.pledging-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.pledge-card {
+  border-radius: 10px;
+  padding: 18px 20px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.pledge-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.07);
+}
+
+.pledge-card.mint-bg {
+  background: #E8FFF6;
+  border: 1px solid #C3F4E2;
+}
+
+.pledge-card.lavender-bg {
+  background: #EEF0FF;
+  border: 1px solid #D5D9FF;
+}
+
+.pledge-card-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #10233F;
+  margin: 0 0 6px 0;
+}
+
+.pledge-card-sub {
+  font-size: 11.5px;
+  color: #64748B;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   MODALS
+   ========================================================================== */
+.profile-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(16, 35, 63, 0.45);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.profile-modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.profile-modal {
+  background: #FFFFFF;
+  border-radius: 12px;
+  width: 500px;
+  max-width: calc(100vw - 32px);
+  box-shadow: 0 20px 60px rgba(16, 35, 63, 0.2);
+  overflow: hidden;
+  transform: translateY(16px);
+  transition: transform 0.2s ease;
+}
+
+.profile-modal-overlay.active .profile-modal {
+  transform: translateY(0);
+}
+
+.profile-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px;
+  border-bottom: 1px solid #F1F5F9;
+}
+
+.profile-modal-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #10233F;
+  margin: 0;
+}
+
+.profile-modal-close {
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: #F1F5F9;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #64748B;
+  font-size: 16px;
+  font-weight: 700;
+  transition: all 0.15s ease;
+}
+
+.profile-modal-close:hover {
+  background: #E2E8F0;
+  color: #10233F;
+}
+
+.profile-modal-body {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.profile-detail-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #F8FAFC;
+}
+
+.profile-detail-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.profile-detail-key {
+  font-size: 11.5px;
+  color: #64748B;
+  font-weight: 400;
+  min-width: 130px;
+}
+
+.profile-detail-val {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #10233F;
+  text-align: right;
+}
+
+/* Funds Modal */
+.funds-modal-amount-input {
+  border: 1.5px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #10233F;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.funds-modal-amount-input:focus {
+  border-color: #2F65F6;
+  box-shadow: 0 0 0 2px rgba(47, 101, 246, 0.1);
+}
+
+.funds-modal-label {
+  font-size: 11.5px;
+  color: #64748B;
+  font-weight: 400;
+  margin-bottom: 6px;
+}
+
+.funds-quick-amounts {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn-quick-amt {
+  padding: 5px 14px;
+  border: 1px solid #E2E8F0;
+  border-radius: 20px;
+  background: #F8FAFC;
+  color: #475569;
+  font-size: 11.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-quick-amt:hover {
+  border-color: #2F65F6;
+  color: #2F65F6;
+  background: #EEF2FF;
+}
+
+.btn-proceed {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background: #2F65F6;
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  letter-spacing: 0.3px;
+}
+
+.btn-proceed:hover {
+  background: #1E4ED8;
+}

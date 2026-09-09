@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/head', { title: 'Angel One - Portfolio Overview', extraCss: ["/css/portfolio.css"] }) %>
+</head>
+<body>
+  <div class="app-container">
+<!-- Sticky Top Header -->
+    <%- include('partials/header', { activePage: 'portfolio' }) %>
+
+   <div class="app-layout" id="appLayout">
+    <!-- ============================================== -->
+    <!-- LEFT SIDEBAR: WATCHLIST -->
+    <!-- ============================================== -->
+    <%- include('partials/watchlist') %>
+
+    <!-- Floating Toggle to reopen Watchlist if hidden -->
+    <button class="reopen-watchlist-floating-btn" id="reopenWatchlistBtn" title="Show Watchlist">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+        <circle cx="12" cy="12" r="3"></circle>
+      </svg>
+      <span>SHOW WATCHLIST</span>
+    </button>
+
+    <!-- ============================================== -->
+    <!-- MAIN DASHBOARD CONTENT -->
+    <!-- ============================================== -->
+    <main class="main-dashboard-content" id="mainDashboardContent">
+      <!-- TOP NAV TABS & HIDE WATCHLIST BUTTON -->
+      <div class="dashboard-top-nav-bar" id="dashboardTopNavBar">
+        <div class="nav-tab-links">
+          <button class="nav-tab-link" id="btnTabOverview" data-tab="overview">Overview</button>
+          <button class="nav-tab-link active" id="btnTabEquity" data-tab="equity">Equity</button>
+        </div>
+        <button class="btn-hide-watchlist" id="btnHideWatchlist">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+            <line x1="1" y1="1" x2="23" y2="23"></line>
+          </svg>
+          <span id="hideWatchlistText">HIDE WATCHLIST</span>
+        </button>
+      </div>
+
+      <!-- TOP 4 METRIC SUMMARY CARD BAR -->
+      <div class="unified-metrics-bar" id="unifiedMetricsBar">
+        <!-- 1. Invested Amount -->
+        <div class="metric-column">
+          <div class="metric-icon-circle blue-icon-bg">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2f65f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+          </div>
+          <div class="metric-text-group">
+            <span class="metric-label" id="metricLabel1">Invested Amount</span>
+            <span class="metric-value" id="metricVal1">₹ 31,344</span>
+          </div>
+        </div>
+
+        <!-- 2. Current Value -->
+        <div class="metric-column">
+          <div class="metric-icon-circle blue-icon-bg">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2f65f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+            </svg>
+          </div>
+          <div class="metric-text-group">
+            <span class="metric-label" id="metricLabel2">Current Value</span>
+            <span class="metric-value" id="metricVal2">₹ 27,975</span>
+          </div>
+        </div>
+
+        <!-- 3. Overall Loss/Gain -->
+        <div class="metric-column">
+          <div class="metric-icon-circle red-icon-bg" id="metricIconWrap3">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ea3943" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+          </div>
+          <div class="metric-text-group">
+            <span class="metric-label" id="metricLabel3">Overall Loss</span>
+            <span class="metric-value val-negative" id="metricVal3">
+              ₹ 3,369.10 <span class="val-sub-percent">-10.75%</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- 4. Today's Gain/Loss -->
+        <div class="metric-column">
+          <div class="metric-icon-circle green-icon-bg" id="metricIconWrap4">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00b259" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+              <polyline points="17 6 23 6 23 12"></polyline>
+            </svg>
+          </div>
+          <div class="metric-text-group">
+            <span class="metric-label" id="metricLabel4">Today's Gain</span>
+            <span class="metric-value val-positive" id="metricVal4">
+              ₹ 158.91 <span class="val-sub-percent">+0.57%</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================== -->
+      <!-- VIEW 1: OVERVIEW TAB CONTENT -->
+      <!-- ============================================== -->
+      <div class="view-pane" id="viewPaneOverview">
+        <!-- Portfolio Breakup Card -->
+        <section class="content-white-card">
+          <h2 class="content-card-title">Portfolio Breakup</h2>
+
+          <!-- Purple Bar Banner -->
+          <div class="purple-allocation-bar">
+            <div class="purple-bar-badge">
+              100% Equity
+            </div>
+          </div>
+
+          <!-- Breakup Table -->
+          <div class="table-scroll-container">
+            <table class="angel-data-table" id="portfolioBreakupTable">
+              <thead>
+                <tr style="background-color: rgb(241, 243, 245); ">
+                  <th class="text-left col-asset">Asset Type</th>
+                  <th class="text-left sortable" data-sort="invested">
+                    Invested Amt <span class="sort-icon-glyph">⬍</span>
+                  </th>
+                  <th class="text-left sortable" data-sort="current">
+                    Current Value <span class="sort-icon-glyph">⬍</span>
+                  </th>
+                  <th class="text-left sortable" data-sort="overall">
+                    Overall G/L <span class="sort-icon-glyph">⬍</span>
+                  </th>
+                  <th class="text-left sortable" data-sort="day">
+                    Day's G/L <span class="sort-icon-glyph">⬍</span>
+                  </th>
+                  <th class="text-right col-action"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="table-data-row clickable" id="overviewEquityRow" title="Click to view Equity Holdings">
+                  <td class="text-left">
+                    <span class="blue-bullet-dot"></span>
+                    <span class="font-medium">Equity (100%)</span>
+                  </td>
+                  <td class="text-left font-medium">₹13,870</td>
+                  <td class="text-left font-medium">₹10,342</td>
+                  <td class="text-left val-negative font-medium">
+                    -₹3,528.30 <span class="table-sub-percent">-25.44%</span>
+                  </td>
+                  <td class="text-left val-negative font-medium">
+                    -₹103.55 <span class="table-sub-percent">-1.00%</span>
+                  </td>
+                  <td class="text-right">
+                    <svg class="chevron-arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2f65f6" stroke-width="2.5">
+                      <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Mutual Funds Callout Banner -->
+        <section class="content-white-card mf-callout-card">
+          <div class="mf-callout-left">
+            <svg class="mf-info-blue-icon" width="18" height="18" viewBox="0 0 24 24" fill="#2f65f6">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+            </svg>
+            <span class="mf-callout-text">You have not invested in Mutual Funds with Angel One yet.</span>
+          </div>
+          <div class="mf-callout-right">
+            <span class="mf-label-pill"><span style="padding: 6px 14px;"> Mutual Funds </span> <button class="btn-invest-now" id="btnInvestNow">INVEST NOW</button></span>
+           
+          </div>
+        </section>
+
+        <!-- Pledging & Pay Later (MTF) -->
+        <section class="pledging-wrapper">
+                 <h2 class="content-card-title">Pledging & Pay Later (MTF)</h2>
+          <div class="pledge-cards-row">
+            <!-- Card 1 -->
+            <div class="pledge-card">
+              <div class="pledge-icon-wrap">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 3v18"></path>
+                  <path d="M6 8l6-5 6 5"></path>
+                  <path d="M3 13l3-5 3 5a3 3 0 0 1-6 0z"></path>
+                  <path d="M15 13l3-5 3 5a3 3 0 0 1-6 0z"></path>
+                  <path d="M4 21h16"></path>
+                </svg>
+              </div>
+              <div class="pledge-card-texts">
+                <span class="pledge-card-title">Pledge Holdings for Extra Margin</span>
+                <span class="pledge-card-sub">Increase your trading balance</span>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="pledge-card">
+            
+              <div class="pledge-icon-wrap">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="16" y1="8" x2="8" y2="16"></line>
+                  <circle cx="9" cy="9" r="1.5" fill="#6366f1"></circle>
+                  <circle cx="15" cy="15" r="1.5" fill="#6366f1"></circle>
+                </svg>
+              </div>
+              <div class="pledge-card-texts">
+                <span class="pledge-card-title">Pay Later with MTF</span>
+                <span class="pledge-card-sub">4x your buying power for MTF stocks</span>
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="pledge-card">
+              <div class="pledge-icon-wrap">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                  <line x1="3" y1="6" x2="21" y2="6"></line>
+                  <polygon points="12 10 13.5 13.5 17 14 14.5 16.5 15 20 12 18 9 20 9.5 16.5 7 14 10.5 13.5 12 10" fill="#f59e0b" stroke="#f59e0b"></polygon>
+                </svg>
+              </div>
+              <div class="pledge-card-texts">
+                <span class="pledge-card-title">View Stock Recommendations</span>
+                <span class="pledge-card-sub">Also available on F&O</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Join our Community -->
+        <section class="community-wrapper">
+          <h2 class="content-card-title">Join our Community</h2>
+          <div class="social-icons-row">
+            <a href="https://youtube.com" target="_blank" rel="noopener" class="social-circle-btn yt-bg" aria-label="YouTube">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#ffffff">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener" class="social-circle-btn insta-bg" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+            <a href="https://facebook.com" target="_blank" rel="noopener" class="social-circle-btn fb-bg" aria-label="Facebook">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#ffffff">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener" class="social-circle-btn x-bg" aria-label="X">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="#ffffff">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-circle-btn in-bg" aria-label="LinkedIn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="#ffffff">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+            </a>
+          </div>
+        </section>
+      </div>
+
+      <!-- ============================================== -->
+      <!-- VIEW 2: EQUITY TAB CONTENT (ACTIVE BY DEFAULT) -->
+      <!-- ============================================== -->
+      <div class="view-pane active" id="viewPaneEquity">
+        <!-- Holdings Card -->
+        <section class="content-white-card holdings-card-section" id="holdingsCardSection">
+          <!-- STICKY HOLDINGS HEADER CONTAINER -->
+          <div class="holdings-sticky-header" id="holdingsStickyHeader">
+            <div class="holdings-header-row">
+              <div class="holdings-title-group">
+                <h2 class="content-card-title mb-0">Holdings</h2>
+                <span class="holdings-count-badge" id="holdingsCountBadge">2</span>
+              </div>
+
+              <!-- Action Controls Group -->
+              <div class="holdings-controls-group">
+           <!-- Search inside holdings -->
+                <div class="holdings-search-box">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#718096" stroke-width="2.5">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                  <input type="text" id="holdingsSearchInput" placeholder="Search for stock or company" autocomplete="off">
+                </div>
+
+                <!-- Filter Icon Button -->
+                <button class="square-outline-btn" title="Filter" aria-label="Filter">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#718096" stroke-width="2">
+                    <line x1="4" y1="21" x2="4" y2="14"></line>
+                    <line x1="4" y1="10" x2="4" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12" y2="3"></line>
+                    <line x1="20" y1="21" x2="20" y2="16"></line>
+                    <line x1="20" y1="12" x2="20" y2="3"></line>
+                    <line x1="1" y1="14" x2="7" y2="14"></line>
+                    <line x1="9" y1="8" x2="15" y2="8"></line>
+                    <line x1="17" y1="16" x2="23" y2="16"></line>
+                  </svg>
+                </button>
+     <!-- Download Export Button -->
+                <button class="square-outline-btn download-btn" title="Export" aria-label="Export">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#718096" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                </button>
+
+                <!-- Layout View Toggle Icon Button -->
+                <!-- <button class="square-outline-btn" title="Layout Options" aria-label="Layout Options">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#718096" stroke-width="2">
+                    <rect x="3" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="14" width="7" height="7"></rect>
+                    <rect x="3" y="14" width="7" height="7"></rect>
+                  </svg>
+                </button> -->
+
+                
+                
+
+                <!-- SELECT & EXIT BUTTON -->
+                <button class="btn-select-exit" id="btnSelectExit">
+                  SELECT & EXIT
+                </button>
+
+                <!-- GROUP HOLDINGS BY DROPDOWN -->
+                <div class="dropdown-wrapper">
+                  <button class="btn-group-by" id="btnGroupBy">
+                    <span>GROUP HOLDINGS BY</span>
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  </button>
+                
+                </div>
+
+                <!-- 3-Dots Menu Button -->
+                <button class="square-outline-btn" title="More" aria-label="More">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#718096" stroke-width="2.5">
+                    <circle cx="12" cy="12" r="1.2"></circle>
+                    <circle cx="12" cy="5" r="1.2"></circle>
+                    <circle cx="12" cy="19" r="1.2"></circle>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Holdings Data Table (Exact Match to Video Recording) -->
+          <div class="table-scroll-container holdings-table-scroll-container">
+            <table class="angel-data-table holdings-table" id="holdingsDataTable">
+              <thead>
+                <tr >
+                  <th class="th-name text-left sortable" data-sort="name">
+                    Name <span class="sort-icon-glyph">⬍</span>
+                  </th>
+                  <th class="th-qty text-right sortable" data-sort="qty">
+                    Quantity <span class="sort-icon-glyph">⬍</span>
+                  </th>
+                  <th class="th-avg text-left sortable" data-sort="avg">
+                    Avg. Price <span class="sort-icon-glyph">⬍</span>
+                  </th>
+                  <th class="th-ltp text-right sortable" data-sort="ltp">
+                    LTP <span class="sort-icon-glyph">⬍</span>
+                  </th>
+                  <th class="th-inv text-left sortable" data-sort="inv">
+                    Inv. Amt. <span class="sort-icon-glyph">⬍</span>
+                  </th>
+                  <th class="th-cur text-right sortable" data-sort="cur">
+                    Current Val. <span class="sort-icon-glyph">⬍</span>
+                  </th>
+                  <th class="th-gl text-left sortable" data-sort="gl">
+                    Overall G/L <span class="sort-icon-glyph">⬍</span>
+                  </th>
+                  <th class="th-day text-right sortable" data-sort="daygl">
+                    Day's G/L <span class="sort-icon-glyph">⬍</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody id="holdingsTableTbody">
+                <tr>
+                  <td colspan="8" style="text-align: center; padding: 25px; color: #94A3B8;">
+                    
+                  </td>Loading portfolio holdings 
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Portfolio Allocation Card -->
+        <section class="content-white-card">
+          <div class="allocation-header-bar">
+            <h2 class="content-card-title mb-0">Portfolio Allocation</h2>
+            <div class="view-toggle-pill-group">
+              <button class="pill-toggle-btn active" id="btnViewSector">View as Sector</button>
+              <button class="pill-toggle-btn" id="btnViewMarketCap">View as Market Cap</button>
+            </div>
+          </div>
+
+          <!-- Purple Segmented Bar Banner -->
+          <div class="purple-allocation-bar segmented-allocation-bar mt-14">
+            <div class="purple-bar-segment segment-rubber" style="width: 62.9%;">
+              <span class="purple-bar-badge">62.9 % Rubber Products</span>
+            </div>
+            <div class="purple-bar-segment segment-fmcg" style="width: 37.1%;">
+              <span class="purple-bar-badge">37.1 % FMCG</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Bottom Two Columns Grid: All Sector Returns & Top Drivers -->
+        <div class="split-bottom-grid">
+          <!-- Column 1: All Sector Returns -->
+          <div class="content-white-card bottom-card">
+            <div class="bottom-card-header">
+              <div>
+                <h3 class="bottom-card-title">All Sector Returns</h3>
+                <p class="bottom-card-sub">Which sectors are giving you the best returns</p>
+              </div>
+              <a href="#returns" class="returns-toggle-link" id="btnToggleReturns">
+                <span>%Returns</span>
+                <span class="exchange-arrows-glyph">⇄</span>
+              </a>
+            </div>
+
+            <!-- Legend Row -->
+            <div class="sector-chart-legend">
+              <div class="legend-unit">
+                <span class="legend-swatch dark-violet-bg"></span>
+                <span>Current Value</span>
+              </div>
+              <div class="legend-unit">
+                <span class="legend-swatch light-lavender-bg"></span>
+                <span>Investment Amount</span>
+              </div>
+            </div>
+
+            <!-- Bar Chart Rows -->
+            <!-- Item 1: Rubber Products -->
+            <div class="sector-bar-chart-row mb-12">
+              <div class="dual-bars-track">
+                <div class="sector-bar dark-violet-bg" style="width: 100%;"></div>
+                <div class="sector-bar light-lavender-bg" style="width: 99%;"></div>
+              </div>
+              <div class="sector-tag-group">
+                <span class="sector-name-txt">Rubber Products</span>
+                <span class="sector-pct-txt val-positive">+0.77% ↗</span>
+              </div>
+            </div>
+
+            <!-- Item 2: FMCG -->
+            <div class="sector-bar-chart-row">
+              <div class="dual-bars-track">
+                <div class="sector-bar dark-violet-bg" style="width: 74%;"></div>
+                <div class="sector-bar light-lavender-bg" style="width: 100%;"></div>
+              </div>
+              <div class="sector-tag-group">
+                <span class="sector-name-txt">FMCG</span>
+                <span class="sector-pct-txt val-negative">-25.27% ↘</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 2: Top Drivers -->
+          <div class="content-white-card bottom-card">
+            <div class="bottom-card-header">
+              <div>
+                <h3 class="bottom-card-title">Top Drivers</h3>
+                <p class="bottom-card-sub">Which stocks are giving you the best and worst returns</p>
+              </div>
+            </div>
+
+            <!-- Top Drivers Toggle Tabs -->
+            <div class="driver-tab-pills-row">
+              <button class="driver-pill-btn active" id="btnGainers">Top Gainers</button>
+              <button class="driver-pill-btn" id="btnLosers">Top Losers</button>
+            </div>
+
+            <!-- Top Drivers Table (Exact match to video) -->
+            <div class="top-drivers-table-wrap">
+              <table class="top-drivers-data-table">
+                <thead>
+                  <tr>
+                    <th class="text-left">Stock</th>
+                    <th class="text-right">52 W H/L</th>
+                    <th class="text-right">LTP</th>
+                    <th class="text-right">Day's Gain</th>
+                  </tr>
+                </thead>
+                <tbody id="topDriversTbody">
+                  <tr>
+                    <td class="text-left font-bold stock-driver-name">CUPID</td>
+                    <td class="text-right text-muted">299.00</td>
+                    <td class="text-right font-medium">284.03</td>
+                    <td class="text-right val-positive font-medium">0.77%</td>
+                  </tr>
+                  <tr>
+                    <td class="text-left font-bold stock-driver-name">ORKLAINDIA</td>
+                    <td class="text-right text-muted">760.00</td>
+                    <td class="text-right font-medium">545.55</td>
+                    <td class="text-right val-positive font-medium">0.23%</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pledging & Pay Later (MTF) -->
+        <section class="pledging-wrapper">
+          <div class="pledge-cards-row">
+            <!-- Card 1 -->
+            <div class="pledge-card">
+              <div class="pledge-icon-wrap">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 3v18"></path>
+                  <path d="M6 8l6-5 6 5"></path>
+                  <path d="M3 13l3-5 3 5a3 3 0 0 1-6 0z"></path>
+                  <path d="M15 13l3-5 3 5a3 3 0 0 1-6 0z"></path>
+                  <path d="M4 21h16"></path>
+                </svg>
+              </div>
+              <div class="pledge-card-texts">
+                <span class="pledge-card-title">Pledge Holdings for Extra Margin</span>
+                <span class="pledge-card-sub">Increase your trading balance</span>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="pledge-card">
+              <div class="pledge-icon-wrap">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="16" y1="8" x2="8" y2="16"></line>
+                  <circle cx="9" cy="9" r="1.5" fill="#6366f1"></circle>
+                  <circle cx="15" cy="15" r="1.5" fill="#6366f1"></circle>
+                </svg>
+              </div>
+              <div class="pledge-card-texts">
+                <span class="pledge-card-title">Pay Later with MTF</span>
+                <span class="pledge-card-sub">4x your buying power for MTF stocks</span>
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="pledge-card">
+              <div class="pledge-icon-wrap">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                  <line x1="3" y1="6" x2="21" y2="6"></line>
+                  <polygon points="12 10 13.5 13.5 17 14 14.5 16.5 15 20 12 18 9 20 9.5 16.5 7 14 10.5 13.5 12 10" fill="#f59e0b" stroke="#f59e0b"></polygon>
+                </svg>
+              </div>
+              <div class="pledge-card-texts">
+                <span class="pledge-card-title">View Stock Recommendations</span>
+                <span class="pledge-card-sub">Also available on F&O</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Portfolio Events & Portfolio News Section -->
+        <div class="split-bottom-grid mb-20">
+          <!-- Column 1: Portfolio Events -->
+          <div class="content-white-card bottom-card events-card">
+            <div class="bottom-card-header">
+              <h3 class="bottom-card-title">Portfolio Events</h3>
+            </div>
+
+            <!-- Event Tab Pills -->
+            <div class="driver-tab-pills-row">
+              <button class="driver-pill-btn active" id="btnEventsBonus">Bonus</button>
+              <button class="driver-pill-btn" id="btnEventsSplits">Splits</button>
+            </div>
+
+            <!-- Events Empty Graphic Box -->
+            <div class="events-empty-container">
+              <div class="events-illustration-box">
+                <div class="events-sheet-graphic">
+                  <div class="sheet-corner-fold"></div>
+                  <div class="sheet-line line-1"></div>
+                  <div class="sheet-line line-2"></div>
+                  <div class="sheet-line line-3"></div>
+                  <div class="sheet-star star-left">✦</div>
+                  <div class="sheet-star star-right">✦</div>
+                  <div class="sheet-star star-bottom">✦</div>
+                </div>
+              </div>
+              <p class="events-empty-text">No stocks with Bonus found in your portfolio.</p>
+            </div>
+          </div>
+
+          <!-- Column 2: Portfolio News -->
+          <div class="content-white-card bottom-card news-card">
+            <div class="bottom-card-header">
+              <h3 class="bottom-card-title">Portfolio News</h3>
+            </div>
+
+            <!-- News List -->
+            <div class="portfolio-news-list">
+              <!-- Item 1 -->
+              <div class="news-list-item">
+                <div class="news-thumb dairy-thumb">
+                  <span class="news-thumb-icon">🥛</span>
+                </div>
+                <div class="news-content-col">
+                  <h4 class="news-headline">Milky Mist shares hit upper circuit on debut; review stop loss levels</h4>
+                  <div class="news-meta-row">
+                    <span class="news-source">Flipmoney</span>
+                    <span class="news-dot">•</span>
+                    <span class="news-ticker-pill val-positive">▲ +9.94%</span>
+                    <span class="news-dot">•</span>
+                    <span class="news-time">5 hrs ago</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Item 2 -->
+              <div class="news-list-item">
+                <div class="news-thumb ipo-thumb">
+                  <span class="news-thumb-icon">🏢</span>
+                </div>
+                <div class="news-content-col">
+                  <h4 class="news-headline">Milky Mist Dairy Food debuts on stock market at 18% above IPO price</h4>
+                  <div class="news-meta-row">
+                    <span class="news-source">Flipmoney</span>
+                    <span class="news-dot">•</span>
+                    <span class="news-ticker-pill val-positive">▲ +9.94%</span>
+                    <span class="news-dot">•</span>
+                    <span class="news-time">9 hrs ago</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Item 3 -->
+              <div class="news-list-item">
+                <div class="news-thumb chart-thumb">
+                  <span class="news-thumb-icon">📈</span>
+                </div>
+                <div class="news-content-col">
+                  <h4 class="news-headline">Milky Mist debus at 15% premium; is it time to hold the stock?</h4>
+                  <div class="news-meta-row">
+                    <span class="news-source">Flipmoney</span>
+                    <span class="news-dot">•</span>
+                    <span class="news-ticker-pill val-positive">▲ +28.4%</span>
+                    <span class="news-dot">•</span>
+                    <span class="news-time">10 hrs ago</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Item 4 -->
+              <div class="news-list-item">
+                <div class="news-thumb health-thumb">
+                  <span class="news-thumb-icon">✨</span>
+                </div>
+                <div class="news-content-col">
+                  <h4 class="news-headline">Personal care stock soars to record high after Q1</h4>
+                  <div class="news-meta-row">
+                    <span class="news-source">Flipmoney</span>
+                    <span class="news-dot">•</span>
+                    <span class="news-symbol-label">CUPID</span>
+                    <span class="news-ticker-pill val-positive">▲ +6.25%</span>
+                    <span class="news-dot">•</span>
+                    <span class="news-time">3 days ago</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Join our Community -->
+        <section class="community-wrapper">
+          <h2 class="content-card-title">Join our Community</h2>
+          <div class="social-icons-row">
+            <a href="https://youtube.com" target="_blank" rel="noopener" class="social-circle-btn yt-bg" aria-label="YouTube">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#ffffff">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener" class="social-circle-btn insta-bg" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+            <a href="https://facebook.com" target="_blank" rel="noopener" class="social-circle-btn fb-bg" aria-label="Facebook">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#ffffff">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener" class="social-circle-btn x-bg" aria-label="X">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="#ffffff">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-circle-btn in-bg" aria-label="LinkedIn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="#ffffff">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+            </a>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+    <!-- Floating Ask Angel Button -->
+    <%- include('partials/ask-angel-btn') %>
+  </div>
+
+  <%- include('partials/scripts', { extraJs: ["/js/watchlist.js","/js/portfolio.js","/js/portfolio1.js"] }) %>
+</body>
+</html>

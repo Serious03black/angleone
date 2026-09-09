@@ -1,0 +1,10 @@
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/backend.js"></script>
+  <script src="/js/data.js"></script>
+  <script src="/js/navigation.js"></script>
+  <script src="/js/app.js"></script>
+  <% if (typeof extraJs !== 'undefined') { %>
+    <% extraJs.forEach(function(js) { %>
+      <script src="<%= js %>"></script>
+    <% }) %>
+  <% } %>
