@@ -11,37 +11,25 @@
   window.marketTicks = window.marketTicks || {};
 
   window.parseTickPrice = function (tick) {
-    if (!tick || typeof tick !== 'object') return undefined;
-    if (typeof tick.price === 'number' && !isNaN(tick.price) && tick.price > 0) return tick.price;
-    if (typeof tick.ltp === 'number' && !isNaN(tick.ltp) && tick.ltp > 0) return tick.ltp;
-    if (tick.price !== undefined && !isNaN(Number(tick.price)) && Number(tick.price) > 0) return Number(tick.price);
-    if (tick.ltp !== undefined && !isNaN(Number(tick.ltp)) && Number(tick.ltp) > 0) return Number(tick.ltp);
-
-    const raw = tick.last_traded_price ?? tick.lastTradedPrice;
-    if (raw !== undefined && raw !== null) {
-      const num = Number(raw);
-      if (!isNaN(num) && num > 0) {
-        return +(num / 100).toFixed(2);
-      }
+    if (!tick) return undefined;
+    const raw = tick.last_traded_price ?? tick.lastTradedPrice ?? tick.ltp ?? tick.price;
+    if (raw === undefined) return undefined;
+    const num = Number(raw);
+    if (num > 100000 && tick.last_traded_price !== undefined) {
+      return num / 100;
     }
-    return undefined;
+    return num > 10000 && num % 1 === 0 && tick.last_traded_price !== undefined ? num / 100 : num;
   };
 
   window.parseTickClose = function (tick) {
-    if (!tick || typeof tick !== 'object') return undefined;
-    if (typeof tick.closePrice === 'number' && !isNaN(tick.closePrice) && tick.closePrice > 0) return tick.closePrice;
-    if (typeof tick.close === 'number' && !isNaN(tick.close) && tick.close > 0) return tick.close;
-    if (tick.closePrice !== undefined && !isNaN(Number(tick.closePrice)) && Number(tick.closePrice) > 0) return Number(tick.closePrice);
-    if (tick.close !== undefined && !isNaN(Number(tick.close)) && Number(tick.close) > 0) return Number(tick.close);
-
-    const raw = tick.close_price;
-    if (raw !== undefined && raw !== null) {
-      const num = Number(raw);
-      if (!isNaN(num) && num > 0) {
-        return +(num / 100).toFixed(2);
-      }
+    if (!tick) return undefined;
+    const raw = tick.close_price ?? tick.closePrice ?? tick.close;
+    if (raw === undefined) return undefined;
+    const num = Number(raw);
+    if (num > 100000 && tick.close_price !== undefined) {
+      return num / 100;
     }
-    return undefined;
+    return num > 10000 && num % 1 === 0 && tick.close_price !== undefined ? num / 100 : num;
   };
 
   function processMarketData(data) {
