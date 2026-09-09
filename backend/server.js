@@ -4,6 +4,7 @@ const express = require("express");
 const http = require("http");
 const cors = require("cors");
 const path = require("path");
+const fs = require("fs");
 const { Server } = require("socket.io");
 
 const { SmartAPI, WebSocketV2 } = require("smartapi-javascript");
