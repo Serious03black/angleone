@@ -1,17 +1,24 @@
-# Ignore a specific file
+# Dependencies
+node_modules/
+package-lock.json
+
+# Environment Variables & Secrets
+.env
+.env*.local
+.env.*
+backend/.env
 secrets.json
 
-# Ignore all files ending in .log or .tmp
+# Logs & Temporary Files
 *.log
 *.tmp
+error.log
 
-# Ignore an entire directory and all its contents
-node_modules/
+# Build & Deployment Outputs
 build/
+dist/
+.vercel
 
-# Ignore a file in a specific folder
-docs/notes.txt
-
-# Exception: Ignore all .log files, BUT track this specific one
-*.log
-!important.log
+# Operating System Files
+.DS_Store
+Thumbs.db
